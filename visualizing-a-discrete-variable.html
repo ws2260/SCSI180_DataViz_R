@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3. Visualizing a Continuous Variable | Data Visualization in R</title>
-  <meta name="description" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  <title>4. Visualizing a Discrete (Categorical) Variable | Data Visualization in R</title>
+  <meta name="description" content="4. Visualizing a Discrete (Categorical) Variable | Data Visualization in R" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  <meta property="og:title" content="4. Visualizing a Discrete (Categorical) Variable | Data Visualization in R" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  <meta name="twitter:title" content="4. Visualizing a Discrete (Categorical) Variable | Data Visualization in R" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="constructing-a-plot.html"/>
-<link rel="next" href="visualizing-a-discrete-categorical-variable.html"/>
+<link rel="prev" href="visualizing-a-continuous-variable.html"/>
+<link rel="next" href="visualizing-relationships-between-two-variables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -194,106 +194,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualizing-a-continuous-variable" class="section level1 hasAnchor">
-<h1><strong>3. Visualizing a Continuous Variable</strong><a href="visualizing-a-continuous-variable.html#visualizing-a-continuous-variable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="visualizing-a-discrete-categorical-variable" class="section level1 hasAnchor">
+<h1><strong>4. Visualizing a Discrete (Categorical) Variable</strong><a href="visualizing-a-discrete-categorical-variable.html#visualizing-a-discrete-categorical-variable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<p><strong>What kind of visualization should we use for a continuous variable?</strong></p>
-<p>Let’s say we want to explore <code>sleeping_hours</code> to better understand the sleep patterns in our group. How can we visualize this data in a way that provides more insight than just reporting an average?</p>
+<p><strong>What kind of visualization should we use for a discrete (categorical) variable?</strong></p>
+<p>Let’s say we want to explore blood types in our group. How many students have blood type A? How does the distribution compare to other blood types?</p>
 <hr />
-<p>When working with continuous data, we often want to understand <strong>how values are distributed across all observations</strong>, as well as where <strong>a representative value</strong>, like an average, lies within the distribution. A single summary statistic, such as the mean, can give us a general sense of central tendency, but it doesn’t reveal <strong>variability, skewness, or the presence of outliers</strong>.</p>
-<p>When we analyze how many hours students sleep per night, <strong>the average sleep duration in our dataset is 6.74 hours</strong>, but does that mean most students sleep around <strong>6-7 hours</strong>? Not necessarily! Some students may sleep only <strong>4 hours</strong>, while others may get <strong>9+ hours</strong> of rest. Simply reporting an average doesn’t tell us how sleep hours are distributed or whether there are any extreme values.</p>
-<p>By visualizing the data, we can see the full distribution rather than relying on a single number. This helps us answer key questions like:</p>
+<p>When working with categorical data, we often want to understand <strong>how frequently different categories</strong> occur. A simple table of counts can provide raw numbers, but visualizing the data makes it much easier to <strong>compare groups</strong>, <strong>spot trends</strong>, and <strong>identify dominant categories</strong>.</p>
+<p>For example, in our <code>MBTI</code> dataset, we have several categorical variables, such as:</p>
 <ul>
-<li>Do most students sleep close to the average, or is there a wide range?</li>
-<li>Are there outliers who sleep significantly more or less than others?</li>
-<li>Is the distribution symmetrical, or do more students tend to sleep fewer/more hours?</li>
+<li>Blood type (<code>blood_type</code>) – <code>A</code>, <code>B</code>, <code>AB</code>, <code>O</code></li>
+<li>Gender (<code>gender</code>) – <code>Female</code>, <code>Male</code></li>
+<li>MBTI personality type (<code>MBTI</code>) – <code>INTJ</code>, <code>ENFP</code>, <code>ISTP</code>, etc.</li>
 </ul>
-<p>There are several ways to visualize a continuous variable, each highlighting different aspects of the data:</p>
+<p>To explore categorical data effectively, we can use different types of visualizations:</p>
 <ul>
-<li><strong>Histograms</strong> – Show how frequently different sleep durations occur.</li>
-<li><strong>Density Plots</strong> – Provide a smooth curve to represent the distribution shape.</li>
-<li><strong>Box Plots</strong> – Summarize key statistics and highlight potential outliers.</li>
-<li><strong>Violin Plots</strong> – Combine box plots and density plots for richer visualization.</li>
-</ul>
-<p>Each method provides unique insights into how sleep patterns vary across students. Next, we’ll explore these techniques and discuss when to use them effectively.</p>
-<hr />
-<div id="histogram-showing-frequency-of-sleep-durations" class="section level2 hasAnchor">
-<h2><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>histogram</strong> groups sleep hours into <strong>bins</strong>, turning the continuous variable into the discrete one, making it easy to see how frequently different sleep durations occur. This helps us identify the most common sleep patterns and whether the data is normally distributed or skewed.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="visualizing-a-continuous-variable.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb40-2"><a href="visualizing-a-continuous-variable.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours), <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb40-3"><a href="visualizing-a-continuous-variable.html#cb40-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Session5_3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<hr />
-<p><strong>Why use a histogram?</strong></p>
-<ul>
-<li>Shows how sleep hours are distributed across students.</li>
-<li>Helps identify clusters (e.g., do most students sleep 6-7 hours?).</li>
-<li>Reveals <strong>skewness</strong> (e.g., are there more students sleeping less or more than average?).</li>
+<li><code>Bar Charts</code> – The most common way to show category counts.</li>
+<li><code>Pie Charts</code> – Show proportions as parts of a whole.</li>
 </ul>
 <hr />
-</div>
-<div id="density-plot-a-smooth-curve-for-distribution" class="section level2 hasAnchor">
-<h2><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>density plot</strong> is similar to a histogram but uses a smooth curve instead of bars. It provides a clearer view of the <strong>overall shape</strong> of the data without being affected by bin sizes.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="visualizing-a-continuous-variable.html#cb41-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb41-2"><a href="visualizing-a-continuous-variable.html#cb41-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
-<span id="cb41-3"><a href="visualizing-a-continuous-variable.html#cb41-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Session5_3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div id="bar-chart-most-common-categorycategories" class="section level2 hasAnchor">
+<h2><strong>4.1 Bar Chart: Most Common Category/Categories</strong><a href="visualizing-a-discrete-categorical-variable.html#bar-chart-most-common-categorycategories" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A bar chart is the most straightforward way to visualize the frequency of each category.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="visualizing-a-discrete-categorical-variable.html#cb45-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb45-2"><a href="visualizing-a-discrete-categorical-variable.html#cb45-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type)) <span class="sc">+</span> </span>
+<span id="cb45-3"><a href="visualizing-a-discrete-categorical-variable.html#cb45-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_4_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><strong>Filled colors based on blood types</strong></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="visualizing-a-discrete-categorical-variable.html#cb46-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="visualizing-a-discrete-categorical-variable.html#cb46-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type, <span class="at">fill =</span> blood_type)) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="visualizing-a-discrete-categorical-variable.html#cb46-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <hr />
-<p><strong>Why use a density plot?</strong></p>
+<p><strong>Why use a bar chart?</strong></p>
 <ul>
-<li>Provides a <strong>smoother representation</strong> of the distribution.</li>
-<li>Useful for detecting multiple peaks (e.g., two distinct groups of sleepers).</li>
-<li>Helps visualize how common or rare different sleep durations are.</li>
+<li>Clearly shows <strong>which category is most/least common</strong>.</li>
+<li>Easy to compare absolute counts <strong>across categories</strong>.</li>
 </ul>
 <hr />
 </div>
-<div id="box-plot-identifying-outliers-and-variability" class="section level2 hasAnchor">
-<h2><strong>3.3 Box Plot: Identifying Outliers and Variability</strong><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>box plot</strong> summarizes the distribution using quartiles, showing the <strong>median</strong>, <strong>spread</strong>, and <strong>potential outliers</strong>. This is useful for identifying students who sleep significantly less or more than the rest.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="visualizing-a-continuous-variable.html#cb42-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb42-2"><a href="visualizing-a-continuous-variable.html#cb42-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
-<span id="cb42-3"><a href="visualizing-a-continuous-variable.html#cb42-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Session5_3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>How do you interpret the box plot here?</p>
-<details>
-<summary>
-<strong>Click to see the answer.</strong>
-</summary>
-<p><img src="boxplot.png" /></p>
-</details>
-<p>Why use a box plot?</p>
+<div id="pie-chart-proportion-of-blood-types" class="section level2 hasAnchor">
+<h2><strong>4.2 Pie Chart: Proportion of Blood Types</strong><a href="visualizing-a-discrete-categorical-variable.html#pie-chart-proportion-of-blood-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we want to see categories as proportions of the total group, a pie chart works ok if the data is not too complex.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="visualizing-a-discrete-categorical-variable.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="visualizing-a-discrete-categorical-variable.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> blood_type), <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb47-3"><a href="visualizing-a-discrete-categorical-variable.html#cb47-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="visualizing-a-discrete-categorical-variable.html#cb47-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_4_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+<p><strong>Why use a pie chart?</strong></p>
 <ul>
-<li>Highlights the <strong>median</strong> sleep duration.</li>
-<li>Shows the <strong>interquartile range (IQR)</strong>, which is the middle 50% of values, helping us understand variability.</li>
-<li>Easily identifies <strong>outliers</strong> (e.g., students who sleep extremely little or a lot like one sleeping 4 hours a day and two sleeping 9 and 10 hours a day).</li>
+<li>Helps visualize <strong>proportions</strong></li>
+<li>Useful when total size matters (e.g., “What percentage of students have blood type A?”).</li>
 </ul>
 <hr />
-</div>
-<div id="violin-plot-combining-box-plot-and-density-plot" class="section level2 hasAnchor">
-<h2><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A violin plot merges the benefits of a box plot and a density plot, showing both summary statistics and the full distribution of sleep durations. Note that if you’re only looking at one variable, it may be a better idea to do a separate approach (a histogram/density plot + a box plot rather than a single violin one).</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="visualizing-a-continuous-variable.html#cb43-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb43-2"><a href="visualizing-a-continuous-variable.html#cb43-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours)) <span class="sc">+</span> </span>
-<span id="cb43-3"><a href="visualizing-a-continuous-variable.html#cb43-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Session5_3_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p><strong>Add color and show individual data points</strong></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="visualizing-a-continuous-variable.html#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb44-2"><a href="visualizing-a-continuous-variable.html#cb44-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours), <span class="at">fill =</span> <span class="st">&#39;violet&#39;</span>) <span class="sc">+</span></span>
-<span id="cb44-3"><a href="visualizing-a-continuous-variable.html#cb44-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours)) <span class="sc">+</span></span>
-<span id="cb44-4"><a href="visualizing-a-continuous-variable.html#cb44-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Session5_3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<hr />
-<p><strong>Why use a violin plot?</strong></p>
+<p><strong>Caution When Using Pie Charts</strong></p>
+<p>While pie charts can be useful for showing proportions, they are not always the best choice. Here’s why:</p>
+<p><strong>Pie charts can be hard to interpret when there are many categories.</strong></p>
+<p>If there are too many slices, it becomes difficult to compare proportions accurately. Small differences between slices are harder to judge than in a bar chart.</p>
+<p><strong>Bar charts are usually a better alternative in many cases.</strong></p>
+<p>A bar chart allows for precise comparisons by looking at bar heights, whereas our eyes are better at comparing lengths (bars) than angles (pie slices).</p>
+<p><strong>When should you use a pie chart?</strong></p>
 <ul>
-<li>Shows the <strong>spread</strong> and <strong>density</strong> of sleep durations.</li>
-<li>Combines summary statistics with a visual shape of the data.</li>
-<li>Useful when <strong>comparing multiple groups</strong> (e.g., sleep patterns by gender or MBTI type).</li>
-<li>Most useful with <strong>a large dataset</strong>.</li>
+<li>When there are few categories (e.g., blood type with only 4 groups: A, B, AB, O).</li>
+<li>When you want to highlight one dominant category (e.g., “Most students have blood type O”).</li>
+<li>When percentages are labeled clearly so that proportions are obvious.</li>
 </ul>
+<p>If your data has many categories or small differences matter, <strong>a bar chart is usually the better choice</strong> for clarity and accuracy.</p>
 <hr />
-<p><a href="constructing-a-plot.html">Previous: 2. Constructing a Plot</a> | <a href="visualizing-a-discrete-categorical-variable.html">Next: 4. Visualizing a Discrete (Categorical) Variable</a></p>
+<p><a href="visualizing-a-continuous-variable.html">Previous: 3. Visualizing a Continuous Variable</a> | <a href="visualizing-relationships-between-two-variables.html">Next: 5. Visualizing Relationships Between Two Variables</a></p>
 
 <hr />
 </div>
@@ -303,8 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="constructing-a-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualizing-a-discrete-categorical-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualizing-a-continuous-variable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-relationships-between-two-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

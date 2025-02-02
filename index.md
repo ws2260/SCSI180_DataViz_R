@@ -25,7 +25,7 @@ site: bookdown::bookdown_site
 - [1. Grammar of Graphics](grammar-of-graphics.html)
 - [2. Constructing a Plot](constructing-a-plot.html)
 - [3. Visualizing a Continuous Variable](visualizing-a-continuous-variable.html)
-- [4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-variable.html)
+- [4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-categorical-variable.html)
 - [5. Visualizing Relationships Between Two Variables](visualizing-relationships-between-two-variables.html)
 
 ---

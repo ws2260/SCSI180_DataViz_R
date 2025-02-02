@@ -284,4 +284,4 @@ ggplot(MBTI, aes(x = EI, y = daily_screen_time, fill = EI)) +
 
 <img src="Session5_5_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
-[Previous: 4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-variable.html)  
+[Previous: 4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-categorical-variable.html)  

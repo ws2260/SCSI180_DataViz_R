@@ -158,7 +158,7 @@ ggplot(MBTI) +
 
 ---
 
-[Previous: 2. Constructing a Plot](constructing-a-plot.html)   | [Next: 4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-variable.html)  
+[Previous: 2. Constructing a Plot](constructing-a-plot.html)   | [Next: 4. Visualizing a Discrete (Categorical) Variable](visualizing-a-discrete-categorical-variable.html)  
 
 
 
