@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2. Constructing a Plot | Data Visualization in R</title>
+  <meta name="description" content="2. Constructing a Plot | Data Visualization in R" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2. Constructing a Plot | Data Visualization in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2. Constructing a Plot | Data Visualization in R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="grammar-of-graphics.html"/>
+<link rel="next" href="visualizing-a-continuous-variable.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="grammar-of-graphics.html"><a href="grammar-of-graphics.html"><i class="fa fa-check"></i><strong>1. Grammar of Graphics</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html"><i class="fa fa-check"></i><strong>2. Constructing a Plot</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#data-which-dataframe-to-use"><i class="fa fa-check"></i><strong>2.1 Data: Which Dataframe to Use?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#aesthetics-which-and-how-variables-to-be-mapped-to-the-plot"><i class="fa fa-check"></i><strong>2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#geometrics-which-typeshape-of-plots-to-be-used"><i class="fa fa-check"></i><strong>2.3 Geometrics: Which Type/Shape of Plots to be Used?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots"><i class="fa fa-check"></i><strong>2.4 Facets: Split the Plot into Subplots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots"><i class="fa fa-check"></i><strong>2.5 Statistics: Adding Summarized Information to Plots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio"><i class="fa fa-check"></i><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot"><i class="fa fa-check"></i><strong>2.7 Theme: Controlling the Appearance of a Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html"><i class="fa fa-check"></i><strong>3. Visualizing a Continuous Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations"><i class="fa fa-check"></i><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution"><i class="fa fa-check"></i><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability"><i class="fa fa-check"></i><strong>3.3 Box Plot: Identifying Outliers and Variability</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot"><i class="fa fa-check"></i><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html"><i class="fa fa-check"></i><strong>4. Visualizing a Discrete (Categorical) Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#bar-chart-most-common-categorycategories"><i class="fa fa-check"></i><strong>4.1 Bar Chart: Most Common Category/Categories</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#pie-chart-proportion-of-blood-types"><i class="fa fa-check"></i><strong>4.2 Pie Chart: Proportion of Blood Types</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html"><i class="fa fa-check"></i><strong>5. Visualizing Relationships Between Two Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-continuous-variables"><i class="fa fa-check"></i><strong>5.1 Relationship Between Two Continuous Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#a-scatter-plot"><i class="fa fa-check"></i><strong>5.1.1 A Scatter Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-categorical-variables"><i class="fa fa-check"></i><strong>5.2 Relationship Between Two Categorical Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart"><i class="fa fa-check"></i><strong>5.2.1 Stacked Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart"><i class="fa fa-check"></i><strong>5.2.2 Grouped Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#mosaic-plot-ggmosaic-package"><i class="fa fa-check"></i><strong>5.2.3 Mosaic Plot (<code>ggmosaic</code> package)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-a-continuous-and-a-categorical-variable"><i class="fa fa-check"></i><strong>5.3 Relationship between a Continuous and a Categorical Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#box-plot"><i class="fa fa-check"></i><strong>5.3.1 Box Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#violin-plot"><i class="fa fa-check"></i><strong>5.3.2 Violin Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars"><i class="fa fa-check"></i><strong>5.3.3 Bar Chart with Mean and Error Bars</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="constructing-a-plot" class="section level1 hasAnchor">
+<h1><strong>2. Constructing a Plot</strong><a href="constructing-a-plot.html#constructing-a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<p>To access the relevant functions in <code>ggplot2</code>, a key visualization package of the <code>tidyverse</code>, and help pages needed for this chapter, load the <code>tidyverse</code> package, which contains <code>ggplot2</code> package, by executing the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="constructing-a-plot.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>This single line of code loads the core tidyverse packages, which are essential for most data analysis tasks. It also highlights any conflicts between <code>tidyverse</code> functions and those from base R or other loaded packages.</p>
+<p>If you encounter the error message “there is no package called ‘tidyverse’,” it means the <code>tidyverse</code> is not installed on your system. To resolve this, install the package first and then run <code>library()</code> again.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="constructing-a-plot.html#cb3-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># Only run this line if you haven&#39;t not install tidyverse yet. You only need to install it once.</span></span>
+<span id="cb3-2"><a href="constructing-a-plot.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>A package only needs to be installed once, but you must reload it at the start of every new session.</p>
+<p>When it’s necessary to clarify which package a function or a dataset comes from, we use the format <code>package::function()</code>. For instance, <code>ggplot2::ggplot()</code> specifies that the <code>ggplot()</code> function is being used from the <code>ggplot2</code> package.</p>
+<hr />
+<div id="data-which-dataframe-to-use" class="section level2 hasAnchor">
+<h2><strong>2.1 Data: Which Dataframe to Use?</strong><a href="constructing-a-plot.html#data-which-dataframe-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
+<p>Let’s explore our first graph to answer a question:</p>
+<p><br>
+<strong>Do people with higher Thinking scores also have higher Judging scores, and does this trend hold across different genders?</strong></p>
+<p><br>
+You might have come up with this question after noticing that your friends who love debating and solving math problems also seem to prefer planning their schedules ahead of time, while those who go with their gut feelings often leave things until the last minute. Maybe you’ve also seen that this pattern seems stronger among your female friends but less obvious among your male friends. Now, you’re curious to see if this trend holds true in a larger group</p>
+<p><br>
+Of course, I’m making this up, but I hope this example illustrates how personal observations can inspire interesting questions about behavior and traits.</p>
+<p><br>
+You can test your answer with the MBTI dataframe. Start by importing the data.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="constructing-a-plot.html#cb4-1" tabindex="-1"></a>MBTI <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;MBTI_survey_results_cleaned.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 68 Columns: 23
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (8): EI, NS, JP, MBTI, gender, blood_type, zodiac_sign, morning_or_nigh...
+## dbl (14): student, E, F, I, J, N, P, S, T, height, weight, number_of_sibling...
+## lgl  (1): FT
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p><strong>Reminder</strong>: A dataframe is a rectangular table where columns represent <strong>variables</strong> (features) and rows represent <strong>observations</strong> (individual data entries).</p>
+<p>Think of a dataframe as <strong>column-focused</strong>:</p>
+<ul>
+<li>Each column corresponds to a specific variable or feature in your dataset.</li>
+<li>For example, if you’re interested in the blood types of people surveyed, you would look at the blood_type column. Each entry (row) in that column represents the blood type of a different person.</li>
+</ul>
+<p>Now imagine filling out a questionnaire:</p>
+<ul>
+<li>Each question in the form represents a variable (column), like age, height, or favorite color.</li>
+<li>When you complete the questionnaire, all your answers go into a single row in the dataframe.</li>
+<li>The next person’s answers will go into the row below yours, filling out the same set of variables (columns).</li>
+</ul>
+<p>This structure makes it easy to analyze or manipulate individual <strong>variables (columns)</strong> while keeping track of the corresponding <strong>observations (rows)</strong>.</p>
+<p>How do we check the imported dataframe?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="constructing-a-plot.html#cb6-1" tabindex="-1"></a><span class="fu">head</span>(MBTI)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 23
+##   student     E     F     I     J     N     P     S     T EI    NS    FT   
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;lgl&gt;
+## 1       1   0.8  0.5    0.2  0.6   0.5   0.4   0.5   0.5  E     N     FALSE
+## 2       2   0.4  0.55   0.6  0.65  0.35  0.35  0.65  0.45 I     S     FALSE
+## 3       3   0    0.25   1    0.6   0.5   0.4   0.5   0.75 I     S     TRUE 
+## 4       4   0.3  0.55   0.7  0.6   0.4   0.4   0.6   0.45 I     S     FALSE
+## 5       5   0.4  0.8    0.6  0.35  0.5   0.65  0.5   0.2  I     N     FALSE
+## 6       6   0.4  0.45   0.6  0.55  0.5   0.45  0.5   0.55 I     N     TRUE 
+## # ℹ 11 more variables: JP &lt;chr&gt;, MBTI &lt;chr&gt;, gender &lt;chr&gt;, height &lt;dbl&gt;,
+## #   weight &lt;dbl&gt;, blood_type &lt;chr&gt;, number_of_siblings &lt;dbl&gt;,
+## #   zodiac_sign &lt;chr&gt;, sleeping_hours &lt;dbl&gt;, daily_screen_time &lt;dbl&gt;,
+## #   morning_or_night_person &lt;chr&gt;</code></pre>
+<p>Among the variables in the dataset are:</p>
+<ul>
+<li><strong>E, I, N, S, T, F, J, P</strong>: <strong><em>Scores for each MBTI dimension</em></strong> (e.g., Extroversion (E), Thinking (T)).</li>
+<li><strong>MBTI</strong>: The MBTI type (e.g., ESTJ, INFJ).</li>
+<li><strong>gender</strong>: Gender of the individual (e.g., Male, Female, Other).</li>
+<li><strong>height</strong> and <strong>weight</strong>: Physical characteristics.</li>
+<li><strong>blood_type</strong>: Blood type of the individual.</li>
+<li><strong>number_of_siblings</strong>: Number of siblings.</li>
+<li><strong>zodiac_sign</strong>: Zodiac sign of the individual.</li>
+<li><strong>sleeping_hours</strong>: Average sleeping hours per day.</li>
+<li><strong>daily_screen_time</strong>: Average daily screen time in hours.</li>
+<li><strong>morning_or_night_person</strong>: Whether the person prefers mornings or nights.</li>
+</ul>
+<hr />
+<p><strong>Do you notice something wrong with the imported dataframe?</strong> <em>Hint: quickly check the imported values in each column</em></p>
+<details>
+<summary>
+<strong>Click to see the answer.</strong>
+</summary>
+<p>Column FT, which should contain the decision whether it’s <code>F</code> (Feeling) or <code>T</code> (Thinking), was interpreted as logical (TRUE/FALSE). Note the data type (<code>lgl</code>). To fix this, we need to specify column <code>FT</code> as <code>character</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="constructing-a-plot.html#cb8-1" tabindex="-1"></a>MBTI <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;MBTI_survey_results_cleaned.csv&quot;</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">FT =</span> <span class="fu">col_character</span>()))</span>
+<span id="cb8-2"><a href="constructing-a-plot.html#cb8-2" tabindex="-1"></a><span class="fu">head</span>(MBTI)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 23
+##   student     E     F     I     J     N     P     S     T EI    NS    FT   
+##     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+## 1       1   0.8  0.5    0.2  0.6   0.5   0.4   0.5   0.5  E     N     F    
+## 2       2   0.4  0.55   0.6  0.65  0.35  0.35  0.65  0.45 I     S     F    
+## 3       3   0    0.25   1    0.6   0.5   0.4   0.5   0.75 I     S     T    
+## 4       4   0.3  0.55   0.7  0.6   0.4   0.4   0.6   0.45 I     S     F    
+## 5       5   0.4  0.8    0.6  0.35  0.5   0.65  0.5   0.2  I     N     F    
+## 6       6   0.4  0.45   0.6  0.55  0.5   0.45  0.5   0.55 I     N     T    
+## # ℹ 11 more variables: JP &lt;chr&gt;, MBTI &lt;chr&gt;, gender &lt;chr&gt;, height &lt;dbl&gt;,
+## #   weight &lt;dbl&gt;, blood_type &lt;chr&gt;, number_of_siblings &lt;dbl&gt;,
+## #   zodiac_sign &lt;chr&gt;, sleeping_hours &lt;dbl&gt;, daily_screen_time &lt;dbl&gt;,
+## #   morning_or_night_person &lt;chr&gt;</code></pre>
+</details>
+<hr />
+<p>Now, let’s start with the first layer of the Grammar of Graphics: <code>data</code>. We now know that our plot will be based on this dataframe <code>MBTI</code>.</p>
+<p>Start by constructing a plot by the function <code>ggplot()</code>. Note the function name <code>ggplot()</code> vs the package name <code>ggplot2</code>.</p>
+<p>What do you expect to see from the following code?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="constructing-a-plot.html#cb10-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI)</span></code></pre></div>
+<details>
+<summary>
+<strong>Click to see the output.</strong>
+</summary>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="constructing-a-plot.html#cb11-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI)</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>This is expected. We just instruct the <code>ggplot()</code> function to know which dataframe to use. We have not even provided which variables to plot yet. Anyway, you can think about this as setting up a blank canvas for the plot.</p>
+</details>
+<hr />
+</div>
+<div id="aesthetics-which-and-how-variables-to-be-mapped-to-the-plot" class="section level2 hasAnchor">
+<h2><strong>2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?</strong><a href="constructing-a-plot.html#aesthetics-which-and-how-variables-to-be-mapped-to-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we’ve provided ggplot() with the dataframe <code>MBTI</code>. Next, we need to think about which variables (aka. columns) we would use to generate the plot.</p>
+<p>The three variables to be used are:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Thinking Score</strong> (Column <code>T</code>) : to be mapped to <strong>X-axis</strong></li>
+<li><strong>Judging Score</strong> (Column <code>J</code>) : to be mapped to <strong>Y-axis</strong></li>
+<li><strong>Gender</strong> (Column <code>gender</code>) : to be mapped as <strong>different colors</strong></li>
+</ol>
+<p>We can use the function <code>aes()</code> to capture this information.</p>
+<p>The format will be: <code>aes(x = T, y = J, color = gender)</code></p>
+<p>Let’s try running the code below:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="constructing-a-plot.html#cb12-1" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)</span></code></pre></div>
+<details>
+<summary>
+Click to see the output
+</summary>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="constructing-a-plot.html#cb13-1" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)</span></code></pre></div>
+<pre><code>## Aesthetic mapping: 
+## * `x`      -&gt; `T`
+## * `y`      -&gt; `J`
+## * `colour` -&gt; `gender`</code></pre>
+<p>You can see that the output provides a description of the aesthetic mappings we assigned, as <code>aes()</code> is a quoting function that captures and reports these mappings without directly executing them.</p>
+</details>
+<p>Now, let’s try to instruct ggplot that the aesthetics will be based on the <code>MBTI</code> dataframe.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="constructing-a-plot.html#cb15-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
+<p>What do you expect to see?</p>
+<details>
+<summary>
+Click to see the output
+</summary>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="constructing-a-plot.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>The output is no longer a blank canvas as it shows a blank plot with axes labeled “T” (Thinking Score) and “J” (Judging Score). Still, nothing is there yet, as we have not assign the type/shape of the plot to be shown yet.</p>
+</details>
+<hr />
+</div>
+<div id="geometrics-which-typeshape-of-plots-to-be-used" class="section level2 hasAnchor">
+<h2><strong>2.3 Geometrics: Which Type/Shape of Plots to be Used?</strong><a href="constructing-a-plot.html#geometrics-which-typeshape-of-plots-to-be-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now, we need to decide what type of plot would be appropriate for our variables.</p>
+<p>Since the variables mapped to the x-axis and y-axis are both continuous, <strong>a scatter plot</strong> would be the most suitable choice. Scatter plots effectively show the relationship between two continuous variables by representing each observation as a point on the plot.</p>
+<p>In the Grammar of Graphics, these visual representations are referred to as <strong>geometric objects</strong> or <strong>geoms</strong>. Geometric objects determine the shape or type of visualization used to display the data, such as points, lines, or bars. For our example, the geometric object we use is a scatter plot, represented by dots.</p>
+<p><strong>Examples of Commonly Used Functions to Create Geometric Objects (Geoms)</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><code>geom_point()</code>
+<ul>
+<li>Used for scatter plots to represent individual data points.<br />
+</li>
+</ul></li>
+<li><code>geom_line()</code>
+<ul>
+<li>Creates a line plot to show trends or changes over a continuous variable.<br />
+</li>
+</ul></li>
+<li><code>geom_bar()</code>
+<ul>
+<li>Creates bar plots for categorical data.<br />
+</li>
+</ul></li>
+<li><code>geom_histogram()</code>
+<ul>
+<li>Displays the distribution of a single continuous variable by dividing it into bins.<br />
+</li>
+</ul></li>
+<li><code>geom_boxplot()</code>
+<ul>
+<li>Displays the distribution and variability of a continuous variable across categories.</li>
+</ul></li>
+</ol>
+<p><strong>Each geom_ function in ggplot2 takes a mapping parameter with the arguments in the form of aesthetics.</strong></p>
+<p>Here, we will create a scatter plot using <code>geom_point()</code></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="constructing-a-plot.html#cb17-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="constructing-a-plot.html#cb17-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><strong>Look at the code again and see if you understand the meaning in its structure.</strong></p>
+<p>Do you notice how we can layer the Grammar of Graphics here? <strong>We can conveniently use <code>+</code> to add the next layer to our plot</strong>. Typically, we place the <code>+</code> at the end of a line, followed by the next layer on a new line.</p>
+<p>But what happens if the command is left unfinished? For example, you accidentally run the code below:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="constructing-a-plot.html#cb18-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span></code></pre></div>
+<p>In the console, R will display:</p>
+<pre><code>+</code></pre>
+<p>If you accidentally left the command unfinished and want to stop, press <code>Esc</code> (on Windows/Mac)</p>
+<hr />
+<p><strong>Do you notice something missing from the above scatter plot?</strong> <em>Hint: check how many observations we expecting</em></p>
+<hr />
+<p>We expect 68 observations, but fewer than 68 points are displayed. This happens because <strong>some data points overlap</strong>, meaning multiple points are plotted at the same location, making them appear as one. This issue, known as <strong>overplotting</strong>, can obscure the true distribution of the data.</p>
+<p>To resolve this, we can use <code>geom_jitter()</code>, which slightly adjusts the position of each point to prevent overlap. By adding a small amount of <strong>random noise</strong> (or <strong>“jitter”</strong>) to the x and/or y coordinates, <code>geom_jitter()</code> ensures all data points are visible while maintaining their general positioning. This makes it easier to interpret the scatter plot without losing information.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="constructing-a-plot.html#cb20-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb20-2"><a href="constructing-a-plot.html#cb20-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><strong>VERY BEAUTIFUL TREND OBSERVED IN OUR CLASS!</strong></p>
+<hr />
+<p><strong>SUMMARY</strong></p>
+<p>As mentioned previously, the minimum requirement for us to provide as input to ggplot2 are</p>
+<p><strong>1.Data</strong></p>
+<p><strong>2.Asthetics</strong></p>
+<p><strong>3.Geometrics</strong></p>
+<p>These components can be constructed as follows:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="constructing-a-plot.html#cb21-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="constructing-a-plot.html#cb21-2" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code></pre></div>
+<p>Often, you will see people simplifying the code by omitting explicit parameter names when they are implied:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="constructing-a-plot.html#cb22-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>) <span class="sc">+</span> </span>
+<span id="cb22-2"><a href="constructing-a-plot.html#cb22-2" tabindex="-1"></a>  <span class="er">&lt;</span>GEOM_FUNCTION<span class="sc">&gt;</span>(<span class="fu">aes</span>(<span class="sc">&lt;</span>MAPPINGS<span class="sc">&gt;</span>))</span></code></pre></div>
+<p>In other words, the following code achieves the same result:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="constructing-a-plot.html#cb23-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb23-2"><a href="constructing-a-plot.html#cb23-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Now you can see why many people find ggplot2’s grammar confusing at first (so many parentheses!).</p>
+<p>I recommend <strong>keeping explicit parameter names until you become familiar with the structure</strong>.</p>
+<p>In fact, some prefer never dropping them at all to ensure the code is more readable and easier to understand. Clear, explicit code makes it simpler to debug and interpret later.</p>
+<hr />
+<p><strong>Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li>Create a scatterplot of <code>E</code> (Extroversion) vs <code>daily_screen_time</code>, colored by gender.</li>
+<li>Create a scatterplot of <code>E</code> (Extroversion) vs <code>I</code> (Introversion). Why does the relationship look like that?</li>
+<li>What happens if you create a scatterplot of <code>zodiac_sign</code> vs <code>blood_type</code>? Why might this plot not be useful?</li>
+</ol>
+<hr />
+</div>
+<div id="facets-split-the-plot-into-subplots" class="section level2 hasAnchor">
+<h2><strong>2.4 Facets: Split the Plot into Subplots</strong><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can split the visualization into multiple smaller panels, each showing a subset of the data. This technique is called <strong>faceting</strong>, and it helps reveal patterns that might be hidden in an overcrowded plot.</p>
+<p>For example, in our <code>MBTI</code> dataset, we may want to examine the relationship between Thinking Score and Judging Score across different genders. By faceting the plot by <code>gender</code>, we can see how this relationship varies within each group, rather than having all the data points mixed together in a single plot.</p>
+<p>Faceting is particularly useful when dealing with categorical variables, as it allows us to visualize trends separately while maintaining the same axis scales for easy comparison.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="constructing-a-plot.html#cb24-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="constructing-a-plot.html#cb24-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb24-3"><a href="constructing-a-plot.html#cb24-3" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gender)</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><code>facet_wrap()</code> is a function in <code>ggplot2</code> that allows us to split a plot into multiple subplots, each displaying a subset of the data based on <strong>ONE</strong> categorical variable. This helps us compare patterns across different groups without cluttering a single plot.</p>
+<p>The <code>~</code> symbol inside <code>facet_wrap(~ gender)</code> defines a formula in R, indicating that we want to create facets based on the gender variable. Each unique value in gender will generate a separate panel, making it easier to observe trends within each group while maintaining consistent axis scales across all facets.</p>
+<hr />
+<p><strong>What if you’d like to split the plot based on two categorical variables?</strong></p>
+<hr />
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="constructing-a-plot.html#cb25-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb25-2"><a href="constructing-a-plot.html#cb25-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="constructing-a-plot.html#cb25-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gender <span class="sc">~</span> morning_or_night_person)</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><code>facet_grid()</code> creates a grid of subplots based on two categorical variables.</p>
+<p>In this example, <code>facet_grid(gender ~ morning_or_night_person)</code> means:</p>
+<ul>
+<li>Rows represent different levels of <code>gender</code></li>
+<li>Columns represent different levels of <code>morning_or_night_person</code></li>
+</ul>
+<p>This ensures that every combination of <code>gender</code> and <code>morning_or_night_person</code> gets its own panel, making it easy to compare trends across multiple categorical groups in a structured layout.</p>
+<hr />
+<p><strong>Exercise</strong></p>
+<ol style="list-style-type: decimal">
+<li>What happens if you facet on a continuous variable?</li>
+<li>What plots does the following code make? What does . do?</li>
+</ol>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="constructing-a-plot.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="constructing-a-plot.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span> </span>
+<span id="cb26-3"><a href="constructing-a-plot.html#cb26-3" tabindex="-1"></a>  <span class="fu">facet_grid</span>(gender <span class="sc">~</span> .)</span>
+<span id="cb26-4"><a href="constructing-a-plot.html#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="constructing-a-plot.html#cb26-5" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="constructing-a-plot.html#cb26-6" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> E, <span class="at">y =</span> T)) <span class="sc">+</span> </span>
+<span id="cb26-7"><a href="constructing-a-plot.html#cb26-7" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> morning_or_night_person)</span></code></pre></div>
+<details>
+<summary>
+Click to see the answer
+</summary>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-21-1.png" width="672" /><img src="Session5_2_files/figure-html/unnamed-chunk-21-2.png" width="672" /></p>
+</details>
+<ol start="3" style="list-style-type: decimal">
+<li>Read <code>?facet_wrap</code>. What does <code>nrow</code> do? What does <code>ncol</code> do? What other options control the layout of the individual panels? Why doesn’t <code>facet_grid()</code> have <code>nrow</code> and <code>ncol</code> arguments?</li>
+</ol>
+<details>
+<summary>
+Click to see the answer
+</summary>
+<p>In <code>facet_wrap()</code>, the <code>nrow</code> argument controls the number of rows in the faceted plot, while <code>ncol</code> controls the number of columns. These options allow for flexibility in arranging the panels, especially when there are many categories. Other options that influence the layout include <code>scales</code>, which determines whether axes are shared across facets, and <code>strip.position</code>, which controls the placement of facet labels.</p>
+<code>facet_grid()</code>, on the other hand, does not have <code>nrow</code> and <code>ncol</code> arguments because it follows a strict grid structure based on two categorical variables—one for rows and one for columns. Since the number of rows and columns is determined by the unique levels of the faceting variables, manual control over layout dimensions is unnecessary.
+</details>
+<hr />
+</div>
+<div id="statistics-adding-summarized-information-to-plots" class="section level2 hasAnchor">
+<h2><strong>2.5 Statistics: Adding Summarized Information to Plots</strong><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we have been plotting raw data points, but sometimes we need to add summarized information to help interpret trends and patterns. In <code>ggplot2</code>, statistical transformations allow us to compute and visualize summaries like <strong>trend lines</strong>, <strong>averages</strong>, <strong>counts</strong>, or <strong>density distributions</strong> directly on the plot.</p>
+<p>For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as geom_smooth(), come into play.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="constructing-a-plot.html#cb27-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb27-2"><a href="constructing-a-plot.html#cb27-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="constructing-a-plot.html#cb27-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>The <code>geom_smooth()</code> function adds a trend line to the plot, summarizing the relationship between the two variables. In this case, <code>method = "lm"</code> specifies a linear model, meaning the function fits a straight line to the data. This helps to highlight overall patterns that may not be immediately clear from the raw data points. The aesthetic mapping inside <code>aes(x = T, y = J)</code> ensures that the trend line is computed using the same variables as the jittered data points.</p>
+<hr />
+<p>Different types of plots also use built-in statistical transformations. For example:</p>
+<ul>
+<li><strong>Bar plots</strong> (<code>geom_bar()</code>) automatically count observations for each category.</li>
+<li><strong>Histograms</strong> (<code>geom_histogram()</code>) compute frequency bins.</li>
+<li><strong>Density plots</strong> (<code>geom_density()</code>) estimate the probability distribution of a continuous variable.</li>
+</ul>
+<p>By incorporating these statistical elements, we can enhance our visualizations to provide deeper insights into the data.</p>
+<hr />
+</div>
+<div id="coordinates-controlling-the-plots-scale-and-aspect-ratio" class="section level2 hasAnchor">
+<h2><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The coordinate system determines how data is mapped onto the plotting area, influencing the scaling, aspect ratio, and orientation of the visualization. By default, <code>ggplot2</code> uses the Cartesian coordinate system (<code>coord_cartesian()</code>), but other options allow for transformations that can change how data is represented.</p>
+<p>For example, zooming in on a specific range of values without removing data points can be done using <code>coord_cartesian(xlim = ..., ylim = ...)</code>. Some plots may also benefit from alternative coordinate systems, such as:</p>
+<ul>
+<li><code>coord_flip()</code>: Swaps the x- and y-axes</li>
+<li><code>coord_fixed()</code>: Ensures equal aspect ratios, preserving relative distances.</li>
+<li><code>coord_polar()</code>: Converts Cartesian coordinates into polar form, useful for radar charts or pie charts.</li>
+</ul>
+<p>Adjusting the coordinate system allows greater flexibility in how data is visually represented, making it easier to emphasize key insights.</p>
+<hr />
+<p><strong>Examples</strong></p>
+<hr />
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="constructing-a-plot.html#cb29-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb29-2"><a href="constructing-a-plot.html#cb29-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="constructing-a-plot.html#cb29-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="constructing-a-plot.html#cb29-4" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<hr />
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="constructing-a-plot.html#cb31-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb31-2"><a href="constructing-a-plot.html#cb31-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb31-3"><a href="constructing-a-plot.html#cb31-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="constructing-a-plot.html#cb31-4" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<hr />
+<p><strong>Using <code>coord_polar()</code> to create a pie chart</strong></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="constructing-a-plot.html#cb33-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb33-2"><a href="constructing-a-plot.html#cb33-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> gender), <span class="at">width =</span> <span class="dv">1</span>) <span class="co">#Creates a bar chart where the x-axis is empty (&quot;&quot;), meaning all bars stack into one column, colored by gender</span></span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="constructing-a-plot.html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb34-2"><a href="constructing-a-plot.html#cb34-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> gender), <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb34-3"><a href="constructing-a-plot.html#cb34-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>)</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>This is a crude method. You will learn about data manipulation later so the visualization would be more informative (e.g. illustrating proportion instead of counts)</p>
+<hr />
+</div>
+<div id="theme-controlling-the-appearance-of-a-plot" class="section level2 hasAnchor">
+<h2><strong>2.7 Theme: Controlling the Appearance of a Plot</strong><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While we have focused on data representation, <strong>the overall look and feel of a plot</strong> also play a crucial role in making visualizations clear, professional, and publication-ready. <code>ggplot2</code> provides themes that allow us to control elements like <strong>backgrounds</strong>, <strong>grid lines</strong>, <strong>font sizes</strong>, <strong>axis styles</strong>, and <strong>legends</strong>.</p>
+<p>By default, ggplot2 applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:</p>
+<ul>
+<li><code>theme_bw()</code> – A clean black-and-white theme with a white background.</li>
+<li><code>theme_minimal()</code> – A simple, modern look with fewer grid lines.</li>
+<li><code>theme_classic()</code> – A traditional theme without grid lines.</li>
+<li><code>theme_void()</code> – A completely empty background, great for pie charts.</li>
+</ul>
+<p>Beyond the built-in themes, other packages offer even more customization options:</p>
+<ul>
+<li><code>ggthemes</code> – Provides additional themes like Economist, Wall Street Journal, and Tufte-style minimalist themes.</li>
+<li><code>bbplot</code> – Designed for BBC-style graphics with a professional and polished look.</li>
+<li><code>hrbrthemes</code> – A collection of modern, publication-quality themes.</li>
+</ul>
+<p>Additionally, the theme() function allows for fine-tuned adjustments, such as font sizes, colors, grid visibility, spacing, and legend positioning. With these tools, we can ensure our plots are not only informative but also visually appealing and suitable for presentations, reports, or publications.</p>
+<hr />
+<p><strong>Change the default theme to <code>theme_classic()</code></strong></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="constructing-a-plot.html#cb35-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb35-2"><a href="constructing-a-plot.html#cb35-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="constructing-a-plot.html#cb35-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="constructing-a-plot.html#cb35-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<hr />
+<p><strong>Add customization</strong></p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="constructing-a-plot.html#cb37-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb37-2"><a href="constructing-a-plot.html#cb37-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="constructing-a-plot.html#cb37-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="constructing-a-plot.html#cb37-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="constructing-a-plot.html#cb37-5" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb37-6"><a href="constructing-a-plot.html#cb37-6" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># Centered bold title</span></span>
+<span id="cb37-7"><a href="constructing-a-plot.html#cb37-7" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>),  <span class="co"># Larger axis labels</span></span>
+<span id="cb37-8"><a href="constructing-a-plot.html#cb37-8" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),  <span class="co"># Adjust axis text size</span></span>
+<span id="cb37-9"><a href="constructing-a-plot.html#cb37-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-10"><a href="constructing-a-plot.html#cb37-10" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-11"><a href="constructing-a-plot.html#cb37-11" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relationship Between Thinking and Judging Scores&quot;</span>,</span>
+<span id="cb37-12"><a href="constructing-a-plot.html#cb37-12" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Thinking Score&quot;</span>,</span>
+<span id="cb37-13"><a href="constructing-a-plot.html#cb37-13" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Judging Score&quot;</span></span>
+<span id="cb37-14"><a href="constructing-a-plot.html#cb37-14" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><strong>Another example with faceting on gender with a theme from another package, with more customization</strong></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="constructing-a-plot.html#cb39-1" tabindex="-1"></a><span class="fu">library</span>(ggthemes) <span class="co"># Use a theme from another package called &quot;ggthemes&quot;</span></span>
+<span id="cb39-2"><a href="constructing-a-plot.html#cb39-2" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="constructing-a-plot.html#cb39-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span></span>
+<span id="cb39-4"><a href="constructing-a-plot.html#cb39-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="constructing-a-plot.html#cb39-5" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="constructing-a-plot.html#cb39-6" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> gender) <span class="sc">+</span></span>
+<span id="cb39-7"><a href="constructing-a-plot.html#cb39-7" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb39-8"><a href="constructing-a-plot.html#cb39-8" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Thinking Score vs Judging Score in Different Genders&quot;</span>,</span>
+<span id="cb39-9"><a href="constructing-a-plot.html#cb39-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Thinking Score&quot;</span>,</span>
+<span id="cb39-10"><a href="constructing-a-plot.html#cb39-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Judging Score&quot;</span></span>
+<span id="cb39-11"><a href="constructing-a-plot.html#cb39-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb39-12"><a href="constructing-a-plot.html#cb39-12" tabindex="-1"></a>  <span class="fu">theme_economist</span>() <span class="sc">+</span> <span class="co"># theme_economist() is from the package &quot;ggthemes&quot;</span></span>
+<span id="cb39-13"><a href="constructing-a-plot.html#cb39-13" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb39-14"><a href="constructing-a-plot.html#cb39-14" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,  <span class="co"># Removes the legend</span></span>
+<span id="cb39-15"><a href="constructing-a-plot.html#cb39-15" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">15</span>))  <span class="co"># Adds space below the title</span></span>
+<span id="cb39-16"><a href="constructing-a-plot.html#cb39-16" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="Session5_2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><a href="grammar-of-graphics.html">Previous: 1. Grammar of Graphics</a> | <a href="visualizing-a-continuous-variable.html">Next: 3. Visualizing a Continuous Variable</a></p>
+
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="grammar-of-graphics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-a-continuous-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

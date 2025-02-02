@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5. Visualizing Relationships Between Two Variables | Data Visualization in R</title>
+  <meta name="description" content="5. Visualizing Relationships Between Two Variables | Data Visualization in R" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5. Visualizing Relationships Between Two Variables | Data Visualization in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5. Visualizing Relationships Between Two Variables | Data Visualization in R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visualizing-a-discrete-categorical-variable.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="grammar-of-graphics.html"><a href="grammar-of-graphics.html"><i class="fa fa-check"></i><strong>1. Grammar of Graphics</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html"><i class="fa fa-check"></i><strong>2. Constructing a Plot</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#data-which-dataframe-to-use"><i class="fa fa-check"></i><strong>2.1 Data: Which Dataframe to Use?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#aesthetics-which-and-how-variables-to-be-mapped-to-the-plot"><i class="fa fa-check"></i><strong>2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#geometrics-which-typeshape-of-plots-to-be-used"><i class="fa fa-check"></i><strong>2.3 Geometrics: Which Type/Shape of Plots to be Used?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots"><i class="fa fa-check"></i><strong>2.4 Facets: Split the Plot into Subplots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots"><i class="fa fa-check"></i><strong>2.5 Statistics: Adding Summarized Information to Plots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio"><i class="fa fa-check"></i><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot"><i class="fa fa-check"></i><strong>2.7 Theme: Controlling the Appearance of a Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html"><i class="fa fa-check"></i><strong>3. Visualizing a Continuous Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations"><i class="fa fa-check"></i><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution"><i class="fa fa-check"></i><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability"><i class="fa fa-check"></i><strong>3.3 Box Plot: Identifying Outliers and Variability</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot"><i class="fa fa-check"></i><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html"><i class="fa fa-check"></i><strong>4. Visualizing a Discrete (Categorical) Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#bar-chart-most-common-categorycategories"><i class="fa fa-check"></i><strong>4.1 Bar Chart: Most Common Category/Categories</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#pie-chart-proportion-of-blood-types"><i class="fa fa-check"></i><strong>4.2 Pie Chart: Proportion of Blood Types</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html"><i class="fa fa-check"></i><strong>5. Visualizing Relationships Between Two Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-continuous-variables"><i class="fa fa-check"></i><strong>5.1 Relationship Between Two Continuous Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#a-scatter-plot"><i class="fa fa-check"></i><strong>5.1.1 A Scatter Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-categorical-variables"><i class="fa fa-check"></i><strong>5.2 Relationship Between Two Categorical Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart"><i class="fa fa-check"></i><strong>5.2.1 Stacked Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart"><i class="fa fa-check"></i><strong>5.2.2 Grouped Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#mosaic-plot-ggmosaic-package"><i class="fa fa-check"></i><strong>5.2.3 Mosaic Plot (<code>ggmosaic</code> package)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-a-continuous-and-a-categorical-variable"><i class="fa fa-check"></i><strong>5.3 Relationship between a Continuous and a Categorical Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#box-plot"><i class="fa fa-check"></i><strong>5.3.1 Box Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#violin-plot"><i class="fa fa-check"></i><strong>5.3.2 Violin Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars"><i class="fa fa-check"></i><strong>5.3.3 Bar Chart with Mean and Error Bars</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizing-relationships-between-two-variables" class="section level1 hasAnchor">
+<h1><strong>5. Visualizing Relationships Between Two Variables</strong><a href="visualizing-relationships-between-two-variables.html#visualizing-relationships-between-two-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Once we look at the pattern within each variable (aka. summarization), we can then check relationships between two variables.</p>
+<hr />
+<div id="relationship-between-two-continuous-variables" class="section level2 hasAnchor">
+<h2><strong>5.1 Relationship Between Two Continuous Variables</strong><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When both variables are continuous, we want to explore <strong>how they change together</strong>. Does <strong>one variable increase when the other increases</strong> (<strong>positive correlation</strong>)? Does <strong>one decrease as the other increases</strong> (<strong>negative correlation</strong>)? Or is there no clear pattern?</p>
+<hr />
+<div id="a-scatter-plot" class="section level3 hasAnchor">
+<h3><strong>5.1.1 A Scatter Plot</strong><a href="visualizing-relationships-between-two-variables.html#a-scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>A scatter plot</strong> is the most common way to explore relationships and we can add a trend line to help us better see the general pattern in the data.</p>
+<p>Conveniently, we did this before when we checked the Thinking Score (<code>T</code>) and the Judging Score (<code>J</code>).</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="visualizing-relationships-between-two-variables.html#cb48-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb48-2"><a href="visualizing-relationships-between-two-variables.html#cb48-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="visualizing-relationships-between-two-variables.html#cb48-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span> <span class="co">#check the trendline color to black</span></span>
+<span id="cb48-4"><a href="visualizing-relationships-between-two-variables.html#cb48-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>To show the linear regression results (R² and p-value), we can use <code>stat_cor()</code> from the ggpubr package to display regression statistics.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="visualizing-relationships-between-two-variables.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;ggpubr&#39; was built under R version 4.4.2</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="visualizing-relationships-between-two-variables.html#cb52-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb52-2"><a href="visualizing-relationships-between-two-variables.html#cb52-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
+<span id="cb52-3"><a href="visualizing-relationships-between-two-variables.html#cb52-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span>  <span class="co"># Add trendline</span></span>
+<span id="cb52-4"><a href="visualizing-relationships-between-two-variables.html#cb52-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="visualizing-relationships-between-two-variables.html#cb52-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>How do interpret the results?</p>
+<details>
+<summary>
+<strong>Click to see the answer.</strong>
+</summary>
+<p>The R value (correlation coefficient) tells us how strongly two variables are related. An <strong>R close to 1</strong> indicates a <strong>strong relationship</strong>, meaning that as one variable increases, the other tends to increase as well. Conversely, an <strong>R close to 0</strong> suggests a <strong>weak or no relationship</strong>, meaning that changes in one variable do not reliably predict changes in the other.</p>
+<p>Typically:</p>
+<ul>
+<li><strong>R between 0.1 and 0.3</strong> : <strong>a weak relationship</strong></li>
+<li><strong>R between 0.3 and 0.6</strong> : <strong>a moderate relationship</strong></li>
+<li><strong>R above 0.6</strong> : <strong>a strong relationship</strong></li>
+</ul>
+<p>In the results above, an <strong>R of 0.48</strong> suggests a <strong>moderate relationship</strong> between Thinking Score (<code>T</code>) and Judging Score (<code>J</code>), meaning there is some association, but other factors likely contribute as well.</p>
+<p>The <strong>p-value</strong> indicates whether the observed relationship is <strong>statistically significant</strong>. A p-value &lt; 0.05 suggests that the relationship is unlikely to be due to random chance, while a higher p-value suggests weaker evidence for a meaningful relationship. In this case, <strong>the p-value is 2.9e-05, which is much smaller than 0.05</strong>, indicating that the relationship is statistically significant. However, a statistically significant result does not necessarily mean the relationship is strong or practically meaningful—R and the overall trend should also be considered to fully interpret the relationship.</p>
+<p>You will learn more in detail about hypothesis testing and p values later.</p>
+</details>
+<p>To check the regression on the relationships in male vs female separately:</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="visualizing-relationships-between-two-variables.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb54-2"><a href="visualizing-relationships-between-two-variables.html#cb54-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
+<span id="cb54-3"><a href="visualizing-relationships-between-two-variables.html#cb54-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Add two trendlines</span></span>
+<span id="cb54-4"><a href="visualizing-relationships-between-two-variables.html#cb54-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb54-5"><a href="visualizing-relationships-between-two-variables.html#cb54-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="relationship-between-two-categorical-variables" class="section level2 hasAnchor">
+<h2><strong>5.2 Relationship Between Two Categorical Variables</strong><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When both variables are discrete/categorical, we are often interested in how their distributions compare. Instead of looking at individual counts separately, we want to see how one categorical variable is distributed within another.</p>
+<p>For example, in our MBTI dataset, we might ask:</p>
+<ul>
+<li>Are extroversion/introversion different across genders?</li>
+<li>Do certain MBTI types tend to have specific blood types?</li>
+</ul>
+<p>To explore the relationship effectively, we can use different types of visualizations:</p>
+<ul>
+<li><code>Stacked Bar Chart</code> – Show the breakdown of one categorical variable within another</li>
+<li><code>Grouped Bar Chart</code> – Show the breakdown side-by-side</li>
+</ul>
+<hr />
+<div id="stacked-bar-chart" class="section level3 hasAnchor">
+<h3><strong>5.2.1 Stacked Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="visualizing-relationships-between-two-variables.html#cb56-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb56-2"><a href="visualizing-relationships-between-two-variables.html#cb56-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="visualizing-relationships-between-two-variables.html#cb56-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><strong>Why use a stacked bar chart?</strong></p>
+<ul>
+<li>Helps visualize <strong>proportions within each category</strong>.</li>
+<li>Easy to compare total counts while seeing how groups contribute.</li>
+</ul>
+<hr />
+</div>
+<div id="grouped-bar-chart" class="section level3 hasAnchor">
+<h3><strong>5.2.2 Grouped Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You just add <code>position = "dodge"</code> to the <code>geom_bar()</code> function.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="visualizing-relationships-between-two-variables.html#cb57-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb57-2"><a href="visualizing-relationships-between-two-variables.html#cb57-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb57-3"><a href="visualizing-relationships-between-two-variables.html#cb57-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><strong>Why use a grouped bar chart?</strong></p>
+<ul>
+<li>Makes it easier to <strong>compare absolute counts across categories</strong>.</li>
+<li>Avoids difficulty in interpreting stacked bar heights.</li>
+</ul>
+<hr />
+</div>
+<div id="mosaic-plot-ggmosaic-package" class="section level3 hasAnchor">
+<h3><strong>5.2.3 Mosaic Plot (<code>ggmosaic</code> package)</strong><a href="visualizing-relationships-between-two-variables.html#mosaic-plot-ggmosaic-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A mosaic plot shows proportions for two categorical variables in a single chart. You need a separate ‘ggmosaic’ package though.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="visualizing-relationships-between-two-variables.html#cb58-1" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb58-2"><a href="visualizing-relationships-between-two-variables.html#cb58-2" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="visualizing-relationships-between-two-variables.html#cb58-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb58-4"><a href="visualizing-relationships-between-two-variables.html#cb58-4" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(gender), <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb58-5"><a href="visualizing-relationships-between-two-variables.html#cb58-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><strong>Why use a mosaic plot?</strong></p>
+<ul>
+<li><strong>Shows proportions directly</strong>, not just counts.</li>
+<li>The area of <strong>each section is scaled to represent the data size</strong>.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="relationship-between-a-continuous-and-a-categorical-variable" class="section level2 hasAnchor">
+<h2><strong>5.3 Relationship between a Continuous and a Categorical Variable</strong><a href="visualizing-relationships-between-two-variables.html#relationship-between-a-continuous-and-a-categorical-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we analyze the relationship between one continuous variable and one categorical variable, we often want to compare <strong>how the continuous variable varies across different categories</strong>. Instead of treating all values as one distribution, we break them down by category to see differences more clearly.</p>
+<p>For example, in our MBTI dataset, we might ask:</p>
+<ul>
+<li>How does screen time vary between extroverts/introverts?</li>
+<li>Do students with different genders have different average sleeping hours?</li>
+</ul>
+<p>To visualize these relationships, we can use:</p>
+<ul>
+<li><code>Box Plot</code></li>
+<li><code>Violin Plot</code></li>
+<li><code>Bar Chart</code> with Mean and Error Bars</li>
+</ul>
+<hr />
+<div id="box-plot" class="section level3 hasAnchor">
+<h3><strong>5.3.1 Box Plot</strong><a href="visualizing-relationships-between-two-variables.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A box plot summarizes the distribution of a continuous variable across categories using quartiles.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualizing-relationships-between-two-variables.html#cb59-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="visualizing-relationships-between-two-variables.html#cb59-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="visualizing-relationships-between-two-variables.html#cb59-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Make it more visually pleasing by coloring each group differently.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualizing-relationships-between-two-variables.html#cb60-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="visualizing-relationships-between-two-variables.html#cb60-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="visualizing-relationships-between-two-variables.html#cb60-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><strong>Why use a box plot?</strong></p>
+<ul>
+<li>Shows <strong>median</strong>, <strong>quartiles</strong>, and <strong>outliers</strong> within each category.</li>
+<li>Helps compare <strong>spread</strong> and <strong>variability</strong> between groups.</li>
+<li>Easily identifies <strong>outliers</strong> that fall outside the usual range.</li>
+</ul>
+<hr />
+</div>
+<div id="violin-plot" class="section level3 hasAnchor">
+<h3><strong>5.3.2 Violin Plot</strong><a href="visualizing-relationships-between-two-variables.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A violin plot is similar to a box plot but also shows the <strong>full distribution shape</strong>.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="visualizing-relationships-between-two-variables.html#cb61-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="visualizing-relationships-between-two-variables.html#cb61-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb61-3"><a href="visualizing-relationships-between-two-variables.html#cb61-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Show individual data points:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualizing-relationships-between-two-variables.html#cb62-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="visualizing-relationships-between-two-variables.html#cb62-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="visualizing-relationships-between-two-variables.html#cb62-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
+<span id="cb62-4"><a href="visualizing-relationships-between-two-variables.html#cb62-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><strong>Why use a violin plot?</strong></p>
+<ul>
+<li>Shows <strong>density of the distribution</strong> (where values are more concentrated).</li>
+<li>Helps compare <strong>symmetry</strong> vs. <strong>skewness</strong> between categories.</li>
+<li>Useful when data is <strong>not normally distributed</strong>.</li>
+</ul>
+<hr />
+</div>
+<div id="bar-chart-with-mean-and-error-bars" class="section level3 hasAnchor">
+<h3><strong>5.3.3 Bar Chart with Mean and Error Bars</strong><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Instead of plotting raw data, we can visualize summary statistics (e.g., mean ± standard deviation). Don’t worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="visualizing-relationships-between-two-variables.html#cb63-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb63-2"><a href="visualizing-relationships-between-two-variables.html#cb63-2" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb63-3"><a href="visualizing-relationships-between-two-variables.html#cb63-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_boot, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb63-4"><a href="visualizing-relationships-between-two-variables.html#cb63-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_5_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><a href="visualizing-a-discrete-variable.html">Previous: 4. Visualizing a Discrete (Categorical) Variable</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualizing-a-discrete-categorical-variable.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

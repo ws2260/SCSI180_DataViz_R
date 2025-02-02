@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3. Visualizing a Continuous Variable | Data Visualization in R</title>
+  <meta name="description" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3. Visualizing a Continuous Variable | Data Visualization in R" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="constructing-a-plot.html"/>
+<link rel="next" href="visualizing-a-discrete-categorical-variable.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Table of Contents</a></li>
+<li class="chapter" data-level="" data-path="grammar-of-graphics.html"><a href="grammar-of-graphics.html"><i class="fa fa-check"></i><strong>1. Grammar of Graphics</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html"><i class="fa fa-check"></i><strong>2. Constructing a Plot</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#data-which-dataframe-to-use"><i class="fa fa-check"></i><strong>2.1 Data: Which Dataframe to Use?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#aesthetics-which-and-how-variables-to-be-mapped-to-the-plot"><i class="fa fa-check"></i><strong>2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#geometrics-which-typeshape-of-plots-to-be-used"><i class="fa fa-check"></i><strong>2.3 Geometrics: Which Type/Shape of Plots to be Used?</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots"><i class="fa fa-check"></i><strong>2.4 Facets: Split the Plot into Subplots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots"><i class="fa fa-check"></i><strong>2.5 Statistics: Adding Summarized Information to Plots</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio"><i class="fa fa-check"></i><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong></a></li>
+<li class="chapter" data-level="" data-path="constructing-a-plot.html"><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot"><i class="fa fa-check"></i><strong>2.7 Theme: Controlling the Appearance of a Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html"><i class="fa fa-check"></i><strong>3. Visualizing a Continuous Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations"><i class="fa fa-check"></i><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution"><i class="fa fa-check"></i><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability"><i class="fa fa-check"></i><strong>3.3 Box Plot: Identifying Outliers and Variability</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-continuous-variable.html"><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot"><i class="fa fa-check"></i><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html"><i class="fa fa-check"></i><strong>4. Visualizing a Discrete (Categorical) Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#bar-chart-most-common-categorycategories"><i class="fa fa-check"></i><strong>4.1 Bar Chart: Most Common Category/Categories</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-a-discrete-categorical-variable.html"><a href="visualizing-a-discrete-categorical-variable.html#pie-chart-proportion-of-blood-types"><i class="fa fa-check"></i><strong>4.2 Pie Chart: Proportion of Blood Types</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html"><i class="fa fa-check"></i><strong>5. Visualizing Relationships Between Two Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-continuous-variables"><i class="fa fa-check"></i><strong>5.1 Relationship Between Two Continuous Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#a-scatter-plot"><i class="fa fa-check"></i><strong>5.1.1 A Scatter Plot</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-two-categorical-variables"><i class="fa fa-check"></i><strong>5.2 Relationship Between Two Categorical Variables</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart"><i class="fa fa-check"></i><strong>5.2.1 Stacked Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart"><i class="fa fa-check"></i><strong>5.2.2 Grouped Bar Chart</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#mosaic-plot-ggmosaic-package"><i class="fa fa-check"></i><strong>5.2.3 Mosaic Plot (<code>ggmosaic</code> package)</strong></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#relationship-between-a-continuous-and-a-categorical-variable"><i class="fa fa-check"></i><strong>5.3 Relationship between a Continuous and a Categorical Variable</strong></a>
+<ul>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#box-plot"><i class="fa fa-check"></i><strong>5.3.1 Box Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#violin-plot"><i class="fa fa-check"></i><strong>5.3.2 Violin Plot</strong></a></li>
+<li class="chapter" data-level="" data-path="visualizing-relationships-between-two-variables.html"><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars"><i class="fa fa-check"></i><strong>5.3.3 Bar Chart with Mean and Error Bars</strong></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visualizing-a-continuous-variable" class="section level1 hasAnchor">
+<h1><strong>3. Visualizing a Continuous Variable</strong><a href="visualizing-a-continuous-variable.html#visualizing-a-continuous-variable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<hr />
+<p><strong>What kind of visualization should we use for a continuous variable?</strong></p>
+<p>Let’s say we want to explore <code>sleeping_hours</code> to better understand the sleep patterns in our group. How can we visualize this data in a way that provides more insight than just reporting an average?</p>
+<hr />
+<p>When working with continuous data, we often want to understand <strong>how values are distributed across all observations</strong>, as well as where <strong>a representative value</strong>, like an average, lies within the distribution. A single summary statistic, such as the mean, can give us a general sense of central tendency, but it doesn’t reveal <strong>variability, skewness, or the presence of outliers</strong>.</p>
+<p>When we analyze how many hours students sleep per night, <strong>the average sleep duration in our dataset is 6.74 hours</strong>, but does that mean most students sleep around <strong>6-7 hours</strong>? Not necessarily! Some students may sleep only <strong>4 hours</strong>, while others may get <strong>9+ hours</strong> of rest. Simply reporting an average doesn’t tell us how sleep hours are distributed or whether there are any extreme values.</p>
+<p>By visualizing the data, we can see the full distribution rather than relying on a single number. This helps us answer key questions like:</p>
+<ul>
+<li>Do most students sleep close to the average, or is there a wide range?</li>
+<li>Are there outliers who sleep significantly more or less than others?</li>
+<li>Is the distribution symmetrical, or do more students tend to sleep fewer/more hours?</li>
+</ul>
+<p>There are several ways to visualize a continuous variable, each highlighting different aspects of the data:</p>
+<ul>
+<li><strong>Histograms</strong> – Show how frequently different sleep durations occur.</li>
+<li><strong>Density Plots</strong> – Provide a smooth curve to represent the distribution shape.</li>
+<li><strong>Box Plots</strong> – Summarize key statistics and highlight potential outliers.</li>
+<li><strong>Violin Plots</strong> – Combine box plots and density plots for richer visualization.</li>
+</ul>
+<p>Each method provides unique insights into how sleep patterns vary across students. Next, we’ll explore these techniques and discuss when to use them effectively.</p>
+<hr />
+<div id="histogram-showing-frequency-of-sleep-durations" class="section level2 hasAnchor">
+<h2><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>histogram</strong> groups sleep hours into <strong>bins</strong>, turning the continuous variable into the discrete one, making it easy to see how frequently different sleep durations occur. This helps us identify the most common sleep patterns and whether the data is normally distributed or skewed.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="visualizing-a-continuous-variable.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb40-2"><a href="visualizing-a-continuous-variable.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours), <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb40-3"><a href="visualizing-a-continuous-variable.html#cb40-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<hr />
+<p><strong>Why use a histogram?</strong></p>
+<ul>
+<li>Shows how sleep hours are distributed across students.</li>
+<li>Helps identify clusters (e.g., do most students sleep 6-7 hours?).</li>
+<li>Reveals <strong>skewness</strong> (e.g., are there more students sleeping less or more than average?).</li>
+</ul>
+<hr />
+</div>
+<div id="density-plot-a-smooth-curve-for-distribution" class="section level2 hasAnchor">
+<h2><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>density plot</strong> is similar to a histogram but uses a smooth curve instead of bars. It provides a clearer view of the <strong>overall shape</strong> of the data without being affected by bin sizes.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="visualizing-a-continuous-variable.html#cb41-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb41-2"><a href="visualizing-a-continuous-variable.html#cb41-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
+<span id="cb41-3"><a href="visualizing-a-continuous-variable.html#cb41-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<hr />
+<p><strong>Why use a density plot?</strong></p>
+<ul>
+<li>Provides a <strong>smoother representation</strong> of the distribution.</li>
+<li>Useful for detecting multiple peaks (e.g., two distinct groups of sleepers).</li>
+<li>Helps visualize how common or rare different sleep durations are.</li>
+</ul>
+<hr />
+</div>
+<div id="box-plot-identifying-outliers-and-variability" class="section level2 hasAnchor">
+<h2><strong>3.3 Box Plot: Identifying Outliers and Variability</strong><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>box plot</strong> summarizes the distribution using quartiles, showing the <strong>median</strong>, <strong>spread</strong>, and <strong>potential outliers</strong>. This is useful for identifying students who sleep significantly less or more than the rest.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="visualizing-a-continuous-variable.html#cb42-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="visualizing-a-continuous-variable.html#cb42-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
+<span id="cb42-3"><a href="visualizing-a-continuous-variable.html#cb42-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>How do you interpret the box plot here?</p>
+<details>
+<summary>
+<strong>Click to see the answer.</strong>
+</summary>
+<p><img src="boxplot.png" /></p>
+</details>
+<p>Why use a box plot?</p>
+<ul>
+<li>Highlights the <strong>median</strong> sleep duration.</li>
+<li>Shows the <strong>interquartile range (IQR)</strong>, which is the middle 50% of values, helping us understand variability.</li>
+<li>Easily identifies <strong>outliers</strong> (e.g., students who sleep extremely little or a lot like one sleeping 4 hours a day and two sleeping 9 and 10 hours a day).</li>
+</ul>
+<hr />
+</div>
+<div id="violin-plot-combining-box-plot-and-density-plot" class="section level2 hasAnchor">
+<h2><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A violin plot merges the benefits of a box plot and a density plot, showing both summary statistics and the full distribution of sleep durations. Note that if you’re only looking at one variable, it may be a better idea to do a separate approach (a histogram/density plot + a box plot rather than a single violin one).</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="visualizing-a-continuous-variable.html#cb43-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb43-2"><a href="visualizing-a-continuous-variable.html#cb43-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="visualizing-a-continuous-variable.html#cb43-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_3_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><strong>Add color and show individual data points</strong></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="visualizing-a-continuous-variable.html#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb44-2"><a href="visualizing-a-continuous-variable.html#cb44-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours), <span class="at">fill =</span> <span class="st">&#39;violet&#39;</span>) <span class="sc">+</span></span>
+<span id="cb44-3"><a href="visualizing-a-continuous-variable.html#cb44-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours)) <span class="sc">+</span></span>
+<span id="cb44-4"><a href="visualizing-a-continuous-variable.html#cb44-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="Session5_3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<hr />
+<p><strong>Why use a violin plot?</strong></p>
+<ul>
+<li>Shows the <strong>spread</strong> and <strong>density</strong> of sleep durations.</li>
+<li>Combines summary statistics with a visual shape of the data.</li>
+<li>Useful when <strong>comparing multiple groups</strong> (e.g., sleep patterns by gender or MBTI type).</li>
+<li>Most useful with <strong>a large dataset</strong>.</li>
+</ul>
+<hr />
+<p><a href="constructing-a-plot.html">Previous: 2. Constructing a Plot</a> | <a href="visualizing-a-discrete-variable.html">Next: 4. Visualizing a Discrete (Categorical) Variable</a></p>
+
+<hr />
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="constructing-a-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-a-discrete-categorical-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
