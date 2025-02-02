@@ -216,14 +216,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bar-chart-most-common-categorycategories" class="section level2 hasAnchor">
 <h2><strong>4.1 Bar Chart: Most Common Category/Categories</strong><a href="visualizing-a-discrete-categorical-variable.html#bar-chart-most-common-categorycategories" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A bar chart is the most straightforward way to visualize the frequency of each category.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="visualizing-a-discrete-categorical-variable.html#cb45-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb45-2"><a href="visualizing-a-discrete-categorical-variable.html#cb45-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type)) <span class="sc">+</span> </span>
-<span id="cb45-3"><a href="visualizing-a-discrete-categorical-variable.html#cb45-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="visualizing-a-discrete-categorical-variable.html#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb44-2"><a href="visualizing-a-discrete-categorical-variable.html#cb44-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type)) <span class="sc">+</span> </span>
+<span id="cb44-3"><a href="visualizing-a-discrete-categorical-variable.html#cb44-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_4_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p><strong>Filled colors based on blood types</strong></p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="visualizing-a-discrete-categorical-variable.html#cb46-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb46-2"><a href="visualizing-a-discrete-categorical-variable.html#cb46-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type, <span class="at">fill =</span> blood_type)) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="visualizing-a-discrete-categorical-variable.html#cb46-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="visualizing-a-discrete-categorical-variable.html#cb45-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb45-2"><a href="visualizing-a-discrete-categorical-variable.html#cb45-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type, <span class="at">fill =</span> blood_type)) <span class="sc">+</span></span>
+<span id="cb45-3"><a href="visualizing-a-discrete-categorical-variable.html#cb45-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <hr />
 <p><strong>Why use a bar chart?</strong></p>
@@ -236,10 +236,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pie-chart-proportion-of-blood-types" class="section level2 hasAnchor">
 <h2><strong>4.2 Pie Chart: Proportion of Blood Types</strong><a href="visualizing-a-discrete-categorical-variable.html#pie-chart-proportion-of-blood-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If we want to see categories as proportions of the total group, a pie chart works ok if the data is not too complex.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="visualizing-a-discrete-categorical-variable.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb47-2"><a href="visualizing-a-discrete-categorical-variable.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> blood_type), <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb47-3"><a href="visualizing-a-discrete-categorical-variable.html#cb47-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="visualizing-a-discrete-categorical-variable.html#cb47-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="visualizing-a-discrete-categorical-variable.html#cb46-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="visualizing-a-discrete-categorical-variable.html#cb46-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> blood_type), <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb46-3"><a href="visualizing-a-discrete-categorical-variable.html#cb46-3" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb46-4"><a href="visualizing-a-discrete-categorical-variable.html#cb46-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_4_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
 <p><strong>Why use a pie chart?</strong></p>

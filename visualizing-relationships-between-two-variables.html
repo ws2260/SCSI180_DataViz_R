@@ -206,20 +206,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><strong>5.1.1 A Scatter Plot</strong><a href="visualizing-relationships-between-two-variables.html#a-scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>A scatter plot</strong> is the most common way to explore relationships and we can add a trend line to help us better see the general pattern in the data.</p>
 <p>Conveniently, we did this before when we checked the Thinking Score (<code>T</code>) and the Judging Score (<code>J</code>).</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="visualizing-relationships-between-two-variables.html#cb48-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb48-2"><a href="visualizing-relationships-between-two-variables.html#cb48-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
-<span id="cb48-3"><a href="visualizing-relationships-between-two-variables.html#cb48-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span> <span class="co">#check the trendline color to black</span></span>
-<span id="cb48-4"><a href="visualizing-relationships-between-two-variables.html#cb48-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="visualizing-relationships-between-two-variables.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="visualizing-relationships-between-two-variables.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb47-3"><a href="visualizing-relationships-between-two-variables.html#cb47-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&#39;black&#39;</span>) <span class="sc">+</span> <span class="co">#check the trendline color to black</span></span>
+<span id="cb47-4"><a href="visualizing-relationships-between-two-variables.html#cb47-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>To show the linear regression results (R² and p-value), we can use <code>stat_cor()</code> from the ggpubr package to display regression statistics.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="visualizing-relationships-between-two-variables.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="visualizing-relationships-between-two-variables.html#cb49-1" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span></code></pre></div>
 <pre><code>## Warning: package &#39;ggpubr&#39; was built under R version 4.4.2</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="visualizing-relationships-between-two-variables.html#cb52-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb52-2"><a href="visualizing-relationships-between-two-variables.html#cb52-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
-<span id="cb52-3"><a href="visualizing-relationships-between-two-variables.html#cb52-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span>  <span class="co"># Add trendline</span></span>
-<span id="cb52-4"><a href="visualizing-relationships-between-two-variables.html#cb52-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
-<span id="cb52-5"><a href="visualizing-relationships-between-two-variables.html#cb52-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="visualizing-relationships-between-two-variables.html#cb51-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb51-2"><a href="visualizing-relationships-between-two-variables.html#cb51-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
+<span id="cb51-3"><a href="visualizing-relationships-between-two-variables.html#cb51-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span>  <span class="co"># Add trendline</span></span>
+<span id="cb51-4"><a href="visualizing-relationships-between-two-variables.html#cb51-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J)) <span class="sc">+</span></span>
+<span id="cb51-5"><a href="visualizing-relationships-between-two-variables.html#cb51-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>How do interpret the results?</p>
@@ -239,11 +239,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You will learn more in detail about hypothesis testing and p values later.</p>
 </details>
 <p>To check the regression on the relationships in male vs female separately:</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="visualizing-relationships-between-two-variables.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb54-2"><a href="visualizing-relationships-between-two-variables.html#cb54-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
-<span id="cb54-3"><a href="visualizing-relationships-between-two-variables.html#cb54-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Add two trendlines</span></span>
-<span id="cb54-4"><a href="visualizing-relationships-between-two-variables.html#cb54-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
-<span id="cb54-5"><a href="visualizing-relationships-between-two-variables.html#cb54-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="visualizing-relationships-between-two-variables.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="visualizing-relationships-between-two-variables.html#cb53-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Reduce overplotting</span></span>
+<span id="cb53-3"><a href="visualizing-relationships-between-two-variables.html#cb53-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span>  <span class="co"># Add two trendlines</span></span>
+<span id="cb53-4"><a href="visualizing-relationships-between-two-variables.html#cb53-4" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
+<span id="cb53-5"><a href="visualizing-relationships-between-two-variables.html#cb53-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <hr />
@@ -265,9 +265,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="stacked-bar-chart" class="section level3 hasAnchor">
 <h3><strong>5.2.1 Stacked Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="visualizing-relationships-between-two-variables.html#cb56-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb56-2"><a href="visualizing-relationships-between-two-variables.html#cb56-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb56-3"><a href="visualizing-relationships-between-two-variables.html#cb56-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="visualizing-relationships-between-two-variables.html#cb55-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb55-2"><a href="visualizing-relationships-between-two-variables.html#cb55-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb55-3"><a href="visualizing-relationships-between-two-variables.html#cb55-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p><strong>Why use a stacked bar chart?</strong></p>
 <ul>
@@ -279,9 +279,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="grouped-bar-chart" class="section level3 hasAnchor">
 <h3><strong>5.2.2 Grouped Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You just add <code>position = "dodge"</code> to the <code>geom_bar()</code> function.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="visualizing-relationships-between-two-variables.html#cb57-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb57-2"><a href="visualizing-relationships-between-two-variables.html#cb57-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb57-3"><a href="visualizing-relationships-between-two-variables.html#cb57-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="visualizing-relationships-between-two-variables.html#cb56-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb56-2"><a href="visualizing-relationships-between-two-variables.html#cb56-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="visualizing-relationships-between-two-variables.html#cb56-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><strong>Why use a grouped bar chart?</strong></p>
 <ul>
@@ -293,11 +293,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mosaic-plot-ggmosaic-package" class="section level3 hasAnchor">
 <h3><strong>5.2.3 Mosaic Plot (<code>ggmosaic</code> package)</strong><a href="visualizing-relationships-between-two-variables.html#mosaic-plot-ggmosaic-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A mosaic plot shows proportions for two categorical variables in a single chart. You need a separate ‘ggmosaic’ package though.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="visualizing-relationships-between-two-variables.html#cb58-1" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
-<span id="cb58-2"><a href="visualizing-relationships-between-two-variables.html#cb58-2" tabindex="-1"></a></span>
-<span id="cb58-3"><a href="visualizing-relationships-between-two-variables.html#cb58-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
-<span id="cb58-4"><a href="visualizing-relationships-between-two-variables.html#cb58-4" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(gender), <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb58-5"><a href="visualizing-relationships-between-two-variables.html#cb58-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="visualizing-relationships-between-two-variables.html#cb57-1" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb57-2"><a href="visualizing-relationships-between-two-variables.html#cb57-2" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="visualizing-relationships-between-two-variables.html#cb57-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
+<span id="cb57-4"><a href="visualizing-relationships-between-two-variables.html#cb57-4" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(gender), <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb57-5"><a href="visualizing-relationships-between-two-variables.html#cb57-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p><strong>Why use a mosaic plot?</strong></p>
 <ul>
@@ -325,14 +325,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="box-plot" class="section level3 hasAnchor">
 <h3><strong>5.3.1 Box Plot</strong><a href="visualizing-relationships-between-two-variables.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A box plot summarizes the distribution of a continuous variable across categories using quartiles.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualizing-relationships-between-two-variables.html#cb59-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
-<span id="cb59-2"><a href="visualizing-relationships-between-two-variables.html#cb59-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
-<span id="cb59-3"><a href="visualizing-relationships-between-two-variables.html#cb59-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="visualizing-relationships-between-two-variables.html#cb58-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="visualizing-relationships-between-two-variables.html#cb58-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="visualizing-relationships-between-two-variables.html#cb58-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>Make it more visually pleasing by coloring each group differently.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualizing-relationships-between-two-variables.html#cb60-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
-<span id="cb60-2"><a href="visualizing-relationships-between-two-variables.html#cb60-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
-<span id="cb60-3"><a href="visualizing-relationships-between-two-variables.html#cb60-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="visualizing-relationships-between-two-variables.html#cb59-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="visualizing-relationships-between-two-variables.html#cb59-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb59-3"><a href="visualizing-relationships-between-two-variables.html#cb59-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p><strong>Why use a box plot?</strong></p>
 <ul>
@@ -345,15 +345,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="violin-plot" class="section level3 hasAnchor">
 <h3><strong>5.3.2 Violin Plot</strong><a href="visualizing-relationships-between-two-variables.html#violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A violin plot is similar to a box plot but also shows the <strong>full distribution shape</strong>.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="visualizing-relationships-between-two-variables.html#cb61-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
-<span id="cb61-2"><a href="visualizing-relationships-between-two-variables.html#cb61-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
-<span id="cb61-3"><a href="visualizing-relationships-between-two-variables.html#cb61-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualizing-relationships-between-two-variables.html#cb60-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="visualizing-relationships-between-two-variables.html#cb60-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="visualizing-relationships-between-two-variables.html#cb60-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Show individual data points:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualizing-relationships-between-two-variables.html#cb62-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
-<span id="cb62-2"><a href="visualizing-relationships-between-two-variables.html#cb62-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
-<span id="cb62-3"><a href="visualizing-relationships-between-two-variables.html#cb62-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
-<span id="cb62-4"><a href="visualizing-relationships-between-two-variables.html#cb62-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="visualizing-relationships-between-two-variables.html#cb61-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="visualizing-relationships-between-two-variables.html#cb61-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span></span>
+<span id="cb61-3"><a href="visualizing-relationships-between-two-variables.html#cb61-3" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time)) <span class="sc">+</span></span>
+<span id="cb61-4"><a href="visualizing-relationships-between-two-variables.html#cb61-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p><strong>Why use a violin plot?</strong></p>
 <ul>
@@ -366,10 +366,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bar-chart-with-mean-and-error-bars" class="section level3 hasAnchor">
 <h3><strong>5.3.3 Bar Chart with Mean and Error Bars</strong><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Instead of plotting raw data, we can visualize summary statistics (e.g., mean ± standard deviation). Don’t worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="visualizing-relationships-between-two-variables.html#cb63-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb63-2"><a href="visualizing-relationships-between-two-variables.html#cb63-2" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb63-3"><a href="visualizing-relationships-between-two-variables.html#cb63-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_boot, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb63-4"><a href="visualizing-relationships-between-two-variables.html#cb63-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="visualizing-relationships-between-two-variables.html#cb62-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
+<span id="cb62-2"><a href="visualizing-relationships-between-two-variables.html#cb62-2" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb62-3"><a href="visualizing-relationships-between-two-variables.html#cb62-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_boot, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb62-4"><a href="visualizing-relationships-between-two-variables.html#cb62-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p><a href="visualizing-a-discrete-categorical-variable.html">Previous: 4. Visualizing a Discrete (Categorical) Variable</a></p>
 

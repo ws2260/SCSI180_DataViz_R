@@ -38,11 +38,6 @@ Let's start with an example. Could you provide an description in your own words 
 
 
 
-
-```
-## `geom_smooth()` using formula = 'y ~ x'
-```
-
 <img src="Session5_1_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 <details> <summary>**Try to think about the instruction yourself first. Once you're done, click to see an example.**</summary>
