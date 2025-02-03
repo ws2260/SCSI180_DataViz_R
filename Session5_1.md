@@ -80,7 +80,7 @@ The layers in the Grammar of Graphics are shown below. You would build a plot **
 
 **7. Themes**
 
-*At the minimum, we need to provide 1-3 to `ggplot2` to generate a plot.If you don't specify anything else, `ggplot2` will infer labels from existing info from the dataframe and use `theme_grey()` as the default theme
+*At the minimum, we need to provide 1-3 to `ggplot2` to generate a plot. If you don't specify anything else, `ggplot2` will infer labels from existing info from the dataframe and use `theme_grey()` as the default theme
 
 ---
 

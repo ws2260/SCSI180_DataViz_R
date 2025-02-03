@@ -26,7 +26,7 @@ library(tidyverse)
 
 This single line of code loads the core tidyverse packages, which are essential for most data analysis tasks. It also highlights any conflicts between `tidyverse` functions and those from base R or other loaded packages.
 
-If you encounter the error message “there is no package called ‘tidyverse’,” it means the `tidyverse` is not installed on your system. To resolve this, install the package first and then run `library()` again.
+If you encounter the error message `“there is no package called ‘tidyverse’`,” it means the `tidyverse` is not installed on your system. To resolve this, install the package first and then run `library()` again.
 
 
 ``` r
@@ -79,8 +79,8 @@ MBTI <- read_csv("MBTI_survey_results_cleaned.csv")
 
 Think of a dataframe as **column-focused**:
 
-- Each column corresponds to a specific variable or feature in your dataset.
-- For example, if you're interested in the blood types of people surveyed, you would look at the blood_type column. Each entry (row) in that column represents the blood type of a different person.
+- Each **column** corresponds to **a specific variable or feature** in your dataset.
+- For example, if you're interested in the blood types of people surveyed, you would look at the `blood_type` column. Each entry (row) in that column represents the blood type of a different person.
 
 Now imagine filling out a questionnaire:
 
@@ -114,16 +114,16 @@ head(MBTI)
 
 Among the variables in the dataset are:
 
-- **E, I, N, S, T, F, J, P**: ***Scores for each MBTI dimension*** (e.g., Extroversion (E), Thinking (T)).
-- **MBTI**: The MBTI type (e.g., ESTJ, INFJ).
-- **gender**: Gender of the individual (e.g., Male, Female, Other).
-- **height** and **weight**: Physical characteristics.
-- **blood_type**: Blood type of the individual.
-- **number_of_siblings**: Number of siblings.
-- **zodiac_sign**: Zodiac sign of the individual.
-- **sleeping_hours**: Average sleeping hours per day.
-- **daily_screen_time**: Average daily screen time in hours.
-- **morning_or_night_person**: Whether the person prefers mornings or nights.
+- **`E`, `I`, `N`, `S`, `T`, `F`, `J`, `P`**: Scores for each MBTI dimension (e.g. Extroversion (E), Thinking (T)).
+- **`MBTI`**: The MBTI type (e.g. ESTJ, INFJ).
+- **`gender`**: Gender of the individual (e.g. Male, Female, Other).
+- **`height`** and **`weight`**: Physical characteristics.
+- **`blood_type`**: Blood type of the individual.
+- **`number_of_siblings`**: Number of siblings.
+- **`zodiac_sign`**: Zodiac sign of the individual.
+- **`sleeping_hours`**: Average sleeping hours per day.
+- **`daily_screen_time`**: Average daily screen time in hours.
+- **`morning_or_night_person`**: Whether the person prefers mornings or nights.
 
 ---
 
@@ -131,7 +131,7 @@ Among the variables in the dataset are:
 
 <details> <summary>**Click to see the answer.** </summary>
 
-Column FT, which should contain the decision whether it's `F` (Feeling) or `T` (Thinking), was interpreted as logical (TRUE/FALSE). Note the data type (`lgl`). To fix this, we need to specify column `FT` as `character`:
+Column FT, which should contain the decision whether it's `F` (Feeling) or `T` (Thinking), was interpreted as logical (`TRUE`/`FALSE`). Note the data type (`lgl`). To fix this, we need to specify column `FT` as `character`:
 
 
 
@@ -269,7 +269,7 @@ In the Grammar of Graphics, these visual representations are referred to as **ge
 5. `geom_boxplot()`
    - Displays the distribution and variability of a continuous variable across categories.  
 
-**Each geom_ function in ggplot2 takes a mapping parameter with the arguments in the form of aesthetics.** 
+**Each `geom_` function in `ggplot`2 takes a mapping parameter with the arguments in the form of aesthetics.** 
 
 Here, we will create a scatter plot using `geom_point()`
 
@@ -318,13 +318,13 @@ ggplot(data = MBTI) +
 
 <img src="Session5_2_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
-**VERY BEAUTIFUL TREND OBSERVED IN OUR CLASS!**
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**VERY BEAUTIFUL TREND OBSERVED IN OUR CLASS!**
 
 ---
 
 **SUMMARY**
 
-As mentioned previously, the minimum requirement for us to provide as input to ggplot2 are 
+As mentioned previously, the minimum requirement for us to provide as input to `ggplot2` are 
 
 **1.Data** 
 
@@ -357,7 +357,7 @@ ggplot(MBTI) +
 
 <img src="Session5_2_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
-Now you can see why many people find ggplot2's grammar confusing at first (so many parentheses!). 
+Now you can see why many people find `ggplot2`'s grammar confusing at first (so many parentheses!). 
 
 I recommend **keeping explicit parameter names until you become familiar with the structure**. 
 
@@ -375,7 +375,7 @@ In fact, some prefer never dropping them at all to ensure the code is more reada
 
 ## **2.4 Facets: Split the Plot into Subplots**
 
-Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can split the visualization into multiple smaller panels, each showing a subset of the data. This technique is called **faceting**, and it helps reveal patterns that might be hidden in an overcrowded plot.
+Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can **split the visualization into multiple smaller panels**, each showing a subset of the data. This technique is called **faceting**, and it helps reveal patterns that might be hidden in an overcrowded plot.
 
 For example, in our `MBTI` dataset, we may want to examine the relationship between Thinking Score and Judging Score across different genders. By faceting the plot by `gender`, we can see how this relationship varies within each group, rather than having all the data points mixed together in a single plot.
 
@@ -418,6 +418,10 @@ In this example, `facet_grid(gender ~ morning_or_night_person)` means:
 
 This ensures that every combination of `gender` and `morning_or_night_person` gets its own panel, making it easy to compare trends across multiple categorical groups in a structured layout.
 
+With this visualization, we could see that all male, morning-person students have **low Thinking scores**, meaning they tend to score higher on the **Feeling (F) scale** instead. This implies that in this group, **morning-oriented males may be more emotionally driven in their decision-making.**
+
+**This is really interesting! We can look more into this group to see if some other variables may explain this more.**
+
 ---
 
 **Exercise**
@@ -456,7 +460,7 @@ In `facet_wrap()`, the `nrow` argument controls the number of rows in the facete
 
 So far, we have been plotting raw data points, but sometimes we need to add summarized information to help interpret trends and patterns. In `ggplot2`, statistical transformations allow us to compute and visualize summaries like **trend lines**, **averages**, **counts**, or **density distributions** directly on the plot.
 
-For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as geom_smooth(), come into play.
+For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as `geom_smooth()`, come into play.
 
 
 ``` r
@@ -487,7 +491,7 @@ By incorporating these statistical elements, we can enhance our visualizations t
 
 ## **2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio**
 
-The coordinate system determines how data is mapped onto the plotting area, influencing the scaling, aspect ratio, and orientation of the visualization. By default, `ggplot2` uses the Cartesian coordinate system (`coord_cartesian()`), but other options allow for transformations that can change how data is represented.
+The **coordinate system** determines how data is mapped onto the plotting area, influencing the **scaling, aspect ratio, and orientation** of the visualization. By default, `ggplot2` uses the Cartesian coordinate system (`coord_cartesian()`), but other options allow for transformations that can change how data is represented.
 
 For example, zooming in on a specific range of values without removing data points can be done using `coord_cartesian(xlim = ..., ylim = ...)`. Some plots may also benefit from alternative coordinate systems, such as:
 
@@ -562,12 +566,14 @@ This is a crude method. You will learn about data manipulation later so the visu
 
 While we have focused on data representation, **the overall look and feel of a plot** also play a crucial role in making visualizations clear, professional, and publication-ready. `ggplot2` provides themes that allow us to control elements like **backgrounds**, **grid lines**, **font sizes**, **axis styles**, and **legends**.
 
-By default, ggplot2 applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:
+By default, `ggplot2` applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:
 
 - `theme_bw()` – A clean black-and-white theme with a white background.
 - `theme_minimal()` – A simple, modern look with fewer grid lines.
 - `theme_classic()` – A traditional theme without grid lines.
 - `theme_void()` – A completely empty background, great for pie charts.
+
+*Personally, I prefer `theme_classic()` based on its clean appearance.*
 
 Beyond the built-in themes, other packages offer even more customization options:
 
@@ -575,7 +581,7 @@ Beyond the built-in themes, other packages offer even more customization options
 - `bbplot` – Designed for BBC-style graphics with a professional and polished look.
 - `hrbrthemes` – A collection of modern, publication-quality themes.
 
-Additionally, the theme() function allows for fine-tuned adjustments, such as font sizes, colors, grid visibility, spacing, and legend positioning. With these tools, we can ensure our plots are not only informative but also visually appealing and suitable for presentations, reports, or publications.
+Additionally, the `theme()` function allows for fine-tuned adjustments, such as font sizes, colors, grid visibility, spacing, and legend positioning. With these tools, we can ensure our plots are not only informative but also visually appealing and suitable for presentations, reports, or publications.
 
 ---
 

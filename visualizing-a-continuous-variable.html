@@ -221,15 +221,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A <strong>histogram</strong> groups sleep hours into <strong>bins</strong>, turning the continuous variable into the discrete one, making it easy to see how frequently different sleep durations occur. This helps us identify the most common sleep patterns and whether the data is normally distributed or skewed.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="visualizing-a-continuous-variable.html#cb39-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
-<span id="cb39-2"><a href="visualizing-a-continuous-variable.html#cb39-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours), <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb39-2"><a href="visualizing-a-continuous-variable.html#cb39-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">boundary =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="co"># bin size is 1 hour and bin edges align with whole numbers</span></span>
 <span id="cb39-3"><a href="visualizing-a-continuous-variable.html#cb39-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <hr />
 <p><strong>Why use a histogram?</strong></p>
 <ul>
 <li>Shows how sleep hours are distributed across students.</li>
-<li>Helps identify clusters (e.g., do most students sleep 6-7 hours?).</li>
-<li>Reveals <strong>skewness</strong> (e.g., are there more students sleeping less or more than average?).</li>
+<li>Helps identify clusters (e.g. do most students sleep 6-7 hours?).</li>
+<li>Reveals <strong>skewness</strong> (e.g. are there more students sleeping less or more than average?).</li>
 </ul>
 <hr />
 </div>
@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Why use a density plot?</strong></p>
 <ul>
 <li>Provides a <strong>smoother representation</strong> of the distribution.</li>
-<li>Useful for detecting multiple peaks (e.g., two distinct groups of sleepers).</li>
+<li>Useful for detecting multiple peaks (e.g. two distinct groups of sleepers).</li>
 <li>Helps visualize how common or rare different sleep durations are.</li>
 </ul>
 <hr />
@@ -262,13 +262,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <strong>Click to see the answer.</strong>
 </summary>
 <p><img src="boxplot.png" /></p>
+<p>In a box plot, the whiskers represent the minimum and maximum values within <strong>1.5× the interquartile range (IQR)</strong>, rather than the absolute min/max of the dataset. This threshold is used because, in a normal distribution, about <strong>99.3% of the data</strong> falls within this range, making it a reliable cutoff for detecting potential outliers. <strong>Values beyond this range are considered potentially unusual</strong> and are plotted separately, allowing for easy identification of extreme variations without being overly sensitive to minor fluctuations.</p>
 </details>
-<p>Why use a box plot?</p>
+<p><strong>Why use a box plot?</strong></p>
 <ul>
 <li>Highlights the <strong>median</strong> sleep duration.</li>
 <li>Shows the <strong>interquartile range (IQR)</strong>, which is the middle 50% of values, helping us understand variability.</li>
-<li>Easily identifies <strong>outliers</strong> (e.g., students who sleep extremely little or a lot like one sleeping 4 hours a day and two sleeping 9 and 10 hours a day).</li>
+<li>Easily identifies <strong>outliers.</strong></li>
 </ul>
+<p><strong>From the results, you can see one student who sleeps 4 hours a day. Please take care of your health!</strong></p>
+<p><strong>Also, two students sleep 9 and 10 hours a day. Do they spend less time on screen? Are they morning people?</strong></p>
 <hr />
 </div>
 <div id="violin-plot-combining-box-plot-and-density-plot" class="section level2 hasAnchor">
@@ -289,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Shows the <strong>spread</strong> and <strong>density</strong> of sleep durations.</li>
 <li>Combines summary statistics with a visual shape of the data.</li>
-<li>Useful when <strong>comparing multiple groups</strong> (e.g., sleep patterns by gender or MBTI type).</li>
+<li>Useful when <strong>comparing multiple groups</strong> (e.g. sleep patterns by gender or MBTI type).</li>
 <li>Most useful with <strong>a large dataset</strong>.</li>
 </ul>
 <hr />

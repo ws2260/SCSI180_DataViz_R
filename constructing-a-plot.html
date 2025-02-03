@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To access the relevant functions in <code>ggplot2</code>, a key visualization package of the <code>tidyverse</code>, and help pages needed for this chapter, load the <code>tidyverse</code> package, which contains <code>ggplot2</code> package, by executing the following code:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="constructing-a-plot.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>This single line of code loads the core tidyverse packages, which are essential for most data analysis tasks. It also highlights any conflicts between <code>tidyverse</code> functions and those from base R or other loaded packages.</p>
-<p>If you encounter the error message “there is no package called ‘tidyverse’,” it means the <code>tidyverse</code> is not installed on your system. To resolve this, install the package first and then run <code>library()</code> again.</p>
+<p>If you encounter the error message <code>“there is no package called ‘tidyverse’</code>,” it means the <code>tidyverse</code> is not installed on your system. To resolve this, install the package first and then run <code>library()</code> again.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="constructing-a-plot.html#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># Only run this line if you haven&#39;t not install tidyverse yet. You only need to install it once.</span></span>
 <span id="cb2-2"><a href="constructing-a-plot.html#cb2-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <p>A package only needs to be installed once, but you must reload it at the start of every new session.</p>
@@ -231,8 +231,8 @@ You can test your answer with the MBTI dataframe. Start by importing the data.</
 <p><strong>Reminder</strong>: A dataframe is a rectangular table where columns represent <strong>variables</strong> (features) and rows represent <strong>observations</strong> (individual data entries).</p>
 <p>Think of a dataframe as <strong>column-focused</strong>:</p>
 <ul>
-<li>Each column corresponds to a specific variable or feature in your dataset.</li>
-<li>For example, if you’re interested in the blood types of people surveyed, you would look at the blood_type column. Each entry (row) in that column represents the blood type of a different person.</li>
+<li>Each <strong>column</strong> corresponds to <strong>a specific variable or feature</strong> in your dataset.</li>
+<li>For example, if you’re interested in the blood types of people surveyed, you would look at the <code>blood_type</code> column. Each entry (row) in that column represents the blood type of a different person.</li>
 </ul>
 <p>Now imagine filling out a questionnaire:</p>
 <ul>
@@ -258,16 +258,16 @@ You can test your answer with the MBTI dataframe. Start by importing the data.</
 ## #   morning_or_night_person &lt;chr&gt;</code></pre>
 <p>Among the variables in the dataset are:</p>
 <ul>
-<li><strong>E, I, N, S, T, F, J, P</strong>: <strong><em>Scores for each MBTI dimension</em></strong> (e.g., Extroversion (E), Thinking (T)).</li>
-<li><strong>MBTI</strong>: The MBTI type (e.g., ESTJ, INFJ).</li>
-<li><strong>gender</strong>: Gender of the individual (e.g., Male, Female, Other).</li>
-<li><strong>height</strong> and <strong>weight</strong>: Physical characteristics.</li>
-<li><strong>blood_type</strong>: Blood type of the individual.</li>
-<li><strong>number_of_siblings</strong>: Number of siblings.</li>
-<li><strong>zodiac_sign</strong>: Zodiac sign of the individual.</li>
-<li><strong>sleeping_hours</strong>: Average sleeping hours per day.</li>
-<li><strong>daily_screen_time</strong>: Average daily screen time in hours.</li>
-<li><strong>morning_or_night_person</strong>: Whether the person prefers mornings or nights.</li>
+<li><strong><code>E</code>, <code>I</code>, <code>N</code>, <code>S</code>, <code>T</code>, <code>F</code>, <code>J</code>, <code>P</code></strong>: Scores for each MBTI dimension (e.g. Extroversion (E), Thinking (T)).</li>
+<li><strong><code>MBTI</code></strong>: The MBTI type (e.g. ESTJ, INFJ).</li>
+<li><strong><code>gender</code></strong>: Gender of the individual (e.g. Male, Female, Other).</li>
+<li><strong><code>height</code></strong> and <strong><code>weight</code></strong>: Physical characteristics.</li>
+<li><strong><code>blood_type</code></strong>: Blood type of the individual.</li>
+<li><strong><code>number_of_siblings</code></strong>: Number of siblings.</li>
+<li><strong><code>zodiac_sign</code></strong>: Zodiac sign of the individual.</li>
+<li><strong><code>sleeping_hours</code></strong>: Average sleeping hours per day.</li>
+<li><strong><code>daily_screen_time</code></strong>: Average daily screen time in hours.</li>
+<li><strong><code>morning_or_night_person</code></strong>: Whether the person prefers mornings or nights.</li>
 </ul>
 <hr />
 <p><strong>Do you notice something wrong with the imported dataframe?</strong> <em>Hint: quickly check the imported values in each column</em></p>
@@ -275,7 +275,7 @@ You can test your answer with the MBTI dataframe. Start by importing the data.</
 <summary>
 <strong>Click to see the answer.</strong>
 </summary>
-<p>Column FT, which should contain the decision whether it’s <code>F</code> (Feeling) or <code>T</code> (Thinking), was interpreted as logical (TRUE/FALSE). Note the data type (<code>lgl</code>). To fix this, we need to specify column <code>FT</code> as <code>character</code>:</p>
+<p>Column FT, which should contain the decision whether it’s <code>F</code> (Feeling) or <code>T</code> (Thinking), was interpreted as logical (<code>TRUE</code>/<code>FALSE</code>). Note the data type (<code>lgl</code>). To fix this, we need to specify column <code>FT</code> as <code>character</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="constructing-a-plot.html#cb7-1" tabindex="-1"></a>MBTI <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;MBTI_survey_results_cleaned.csv&quot;</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">FT =</span> <span class="fu">col_character</span>()))</span>
 <span id="cb7-2"><a href="constructing-a-plot.html#cb7-2" tabindex="-1"></a><span class="fu">head</span>(MBTI)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 23
@@ -376,7 +376,7 @@ Click to see the output
 <li>Displays the distribution and variability of a continuous variable across categories.</li>
 </ul></li>
 </ol>
-<p><strong>Each geom_ function in ggplot2 takes a mapping parameter with the arguments in the form of aesthetics.</strong></p>
+<p><strong>Each <code>geom_</code> function in <code>ggplot</code>2 takes a mapping parameter with the arguments in the form of aesthetics.</strong></p>
 <p>Here, we will create a scatter plot using <code>geom_point()</code></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="constructing-a-plot.html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
 <span id="cb16-2"><a href="constructing-a-plot.html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
@@ -396,10 +396,10 @@ Click to see the output
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="constructing-a-plot.html#cb19-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> MBTI) <span class="sc">+</span> </span>
 <span id="cb19-2"><a href="constructing-a-plot.html#cb19-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
 <p><img src="Session5_2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p><strong>VERY BEAUTIFUL TREND OBSERVED IN OUR CLASS!</strong></p>
+<p>                    <strong>VERY BEAUTIFUL TREND OBSERVED IN OUR CLASS!</strong></p>
 <hr />
 <p><strong>SUMMARY</strong></p>
-<p>As mentioned previously, the minimum requirement for us to provide as input to ggplot2 are</p>
+<p>As mentioned previously, the minimum requirement for us to provide as input to <code>ggplot2</code> are</p>
 <p><strong>1.Data</strong></p>
 <p><strong>2.Asthetics</strong></p>
 <p><strong>3.Geometrics</strong></p>
@@ -413,7 +413,7 @@ Click to see the output
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="constructing-a-plot.html#cb22-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb22-2"><a href="constructing-a-plot.html#cb22-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender))</span></code></pre></div>
 <p><img src="Session5_2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>Now you can see why many people find ggplot2’s grammar confusing at first (so many parentheses!).</p>
+<p>Now you can see why many people find <code>ggplot2</code>’s grammar confusing at first (so many parentheses!).</p>
 <p>I recommend <strong>keeping explicit parameter names until you become familiar with the structure</strong>.</p>
 <p>In fact, some prefer never dropping them at all to ensure the code is more readable and easier to understand. Clear, explicit code makes it simpler to debug and interpret later.</p>
 <hr />
@@ -427,7 +427,7 @@ Click to see the output
 </div>
 <div id="facets-split-the-plot-into-subplots" class="section level2 hasAnchor">
 <h2><strong>2.4 Facets: Split the Plot into Subplots</strong><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can split the visualization into multiple smaller panels, each showing a subset of the data. This technique is called <strong>faceting</strong>, and it helps reveal patterns that might be hidden in an overcrowded plot.</p>
+<p>Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can <strong>split the visualization into multiple smaller panels</strong>, each showing a subset of the data. This technique is called <strong>faceting</strong>, and it helps reveal patterns that might be hidden in an overcrowded plot.</p>
 <p>For example, in our <code>MBTI</code> dataset, we may want to examine the relationship between Thinking Score and Judging Score across different genders. By faceting the plot by <code>gender</code>, we can see how this relationship varies within each group, rather than having all the data points mixed together in a single plot.</p>
 <p>Faceting is particularly useful when dealing with categorical variables, as it allows us to visualize trends separately while maintaining the same axis scales for easy comparison.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="constructing-a-plot.html#cb23-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
@@ -450,6 +450,8 @@ Click to see the output
 <li>Columns represent different levels of <code>morning_or_night_person</code></li>
 </ul>
 <p>This ensures that every combination of <code>gender</code> and <code>morning_or_night_person</code> gets its own panel, making it easy to compare trends across multiple categorical groups in a structured layout.</p>
+<p>With this visualization, we could see that all male, morning-person students have <strong>low Thinking scores</strong>, meaning they tend to score higher on the <strong>Feeling (F) scale</strong> instead. This implies that in this group, <strong>morning-oriented males may be more emotionally driven in their decision-making.</strong></p>
+<p><strong>This is really interesting! We can look more into this group to see if some other variables may explain this more.</strong></p>
 <hr />
 <p><strong>Exercise</strong></p>
 <ol style="list-style-type: decimal">
@@ -484,7 +486,7 @@ Click to see the answer
 <div id="statistics-adding-summarized-information-to-plots" class="section level2 hasAnchor">
 <h2><strong>2.5 Statistics: Adding Summarized Information to Plots</strong><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>So far, we have been plotting raw data points, but sometimes we need to add summarized information to help interpret trends and patterns. In <code>ggplot2</code>, statistical transformations allow us to compute and visualize summaries like <strong>trend lines</strong>, <strong>averages</strong>, <strong>counts</strong>, or <strong>density distributions</strong> directly on the plot.</p>
-<p>For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as geom_smooth(), come into play.</p>
+<p>For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as <code>geom_smooth()</code>, come into play.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="constructing-a-plot.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb26-2"><a href="constructing-a-plot.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J, <span class="at">color =</span> gender)) <span class="sc">+</span></span>
 <span id="cb26-3"><a href="constructing-a-plot.html#cb26-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="fu">aes</span>(<span class="at">x =</span> T, <span class="at">y =</span> J))</span></code></pre></div>
@@ -503,7 +505,7 @@ Click to see the answer
 </div>
 <div id="coordinates-controlling-the-plots-scale-and-aspect-ratio" class="section level2 hasAnchor">
 <h2><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The coordinate system determines how data is mapped onto the plotting area, influencing the scaling, aspect ratio, and orientation of the visualization. By default, <code>ggplot2</code> uses the Cartesian coordinate system (<code>coord_cartesian()</code>), but other options allow for transformations that can change how data is represented.</p>
+<p>The <strong>coordinate system</strong> determines how data is mapped onto the plotting area, influencing the <strong>scaling, aspect ratio, and orientation</strong> of the visualization. By default, <code>ggplot2</code> uses the Cartesian coordinate system (<code>coord_cartesian()</code>), but other options allow for transformations that can change how data is represented.</p>
 <p>For example, zooming in on a specific range of values without removing data points can be done using <code>coord_cartesian(xlim = ..., ylim = ...)</code>. Some plots may also benefit from alternative coordinate systems, such as:</p>
 <ul>
 <li><code>coord_flip()</code>: Swaps the x- and y-axes</li>
@@ -542,20 +544,21 @@ Click to see the answer
 <div id="theme-controlling-the-appearance-of-a-plot" class="section level2 hasAnchor">
 <h2><strong>2.7 Theme: Controlling the Appearance of a Plot</strong><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>While we have focused on data representation, <strong>the overall look and feel of a plot</strong> also play a crucial role in making visualizations clear, professional, and publication-ready. <code>ggplot2</code> provides themes that allow us to control elements like <strong>backgrounds</strong>, <strong>grid lines</strong>, <strong>font sizes</strong>, <strong>axis styles</strong>, and <strong>legends</strong>.</p>
-<p>By default, ggplot2 applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:</p>
+<p>By default, <code>ggplot2</code> applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:</p>
 <ul>
 <li><code>theme_bw()</code> – A clean black-and-white theme with a white background.</li>
 <li><code>theme_minimal()</code> – A simple, modern look with fewer grid lines.</li>
 <li><code>theme_classic()</code> – A traditional theme without grid lines.</li>
 <li><code>theme_void()</code> – A completely empty background, great for pie charts.</li>
 </ul>
+<p><em>Personally, I prefer <code>theme_classic()</code> based on its clean appearance.</em></p>
 <p>Beyond the built-in themes, other packages offer even more customization options:</p>
 <ul>
 <li><code>ggthemes</code> – Provides additional themes like Economist, Wall Street Journal, and Tufte-style minimalist themes.</li>
 <li><code>bbplot</code> – Designed for BBC-style graphics with a professional and polished look.</li>
 <li><code>hrbrthemes</code> – A collection of modern, publication-quality themes.</li>
 </ul>
-<p>Additionally, the theme() function allows for fine-tuned adjustments, such as font sizes, colors, grid visibility, spacing, and legend positioning. With these tools, we can ensure our plots are not only informative but also visually appealing and suitable for presentations, reports, or publications.</p>
+<p>Additionally, the <code>theme()</code> function allows for fine-tuned adjustments, such as font sizes, colors, grid visibility, spacing, and legend positioning. With these tools, we can ensure our plots are not only informative but also visually appealing and suitable for presentations, reports, or publications.</p>
 <hr />
 <p><strong>Change the default theme to <code>theme_classic()</code></strong></p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="constructing-a-plot.html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>

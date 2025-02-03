@@ -54,7 +54,7 @@ A **histogram** groups sleep hours into **bins**, turning the continuous variabl
 
 ``` r
 ggplot(MBTI) + 
-  geom_histogram(aes(x = sleeping_hours), binwidth = 1) + 
+  geom_histogram(aes(x = sleeping_hours), binwidth = 1, boundary = 0) + # bin size is 1 hour and bin edges align with whole numbers
   theme_classic()
 ```
 
@@ -65,8 +65,8 @@ ggplot(MBTI) +
 **Why use a histogram?**
 
 - Shows how sleep hours are distributed across students.
-- Helps identify clusters (e.g., do most students sleep 6-7 hours?).
-- Reveals **skewness** (e.g., are there more students sleeping less or more than average?).
+- Helps identify clusters (e.g. do most students sleep 6-7 hours?).
+- Reveals **skewness** (e.g. are there more students sleeping less or more than average?).
 
 ---
 
@@ -88,7 +88,7 @@ ggplot(MBTI) +
 **Why use a density plot?**
 
 - Provides a **smoother representation** of the distribution.
-- Useful for detecting multiple peaks (e.g., two distinct groups of sleepers).
+- Useful for detecting multiple peaks (e.g. two distinct groups of sleepers).
 - Helps visualize how common or rare different sleep durations are.
 
 ---
@@ -112,13 +112,19 @@ How do you interpret the box plot here?
 
 ![](boxplot.png)
 
+In a box plot, the whiskers represent the minimum and maximum values within **1.5× the interquartile range (IQR)**, rather than the absolute min/max of the dataset. This threshold is used because, in a normal distribution, about **99.3% of the data** falls within this range, making it a reliable cutoff for detecting potential outliers. **Values beyond this range are considered potentially unusual** and are plotted separately, allowing for easy identification of extreme variations without being overly sensitive to minor fluctuations.
+
 </details>
 
-Why use a box plot?
+**Why use a box plot?**
 
 - Highlights the **median** sleep duration.
 - Shows the **interquartile range (IQR)**, which is the middle 50% of values, helping us understand variability.
-- Easily identifies **outliers** (e.g., students who sleep extremely little or a lot like one sleeping 4 hours a day and two sleeping 9 and 10 hours a day).
+- Easily identifies **outliers.** 
+
+**From the results, you can see one student who sleeps 4 hours a day. Please take care of your health!**
+
+**Also, two students sleep 9 and 10 hours a day. Do they spend less time on screen? Are they morning people?**
 
 ---
 
@@ -153,7 +159,7 @@ ggplot(MBTI) +
 
 - Shows the **spread** and **density** of sleep durations.
 - Combines summary statistics with a visual shape of the data.
-- Useful when **comparing multiple groups** (e.g., sleep patterns by gender or MBTI type).
+- Useful when **comparing multiple groups** (e.g. sleep patterns by gender or MBTI type).
 - Most useful with **a large dataset**.
 
 ---

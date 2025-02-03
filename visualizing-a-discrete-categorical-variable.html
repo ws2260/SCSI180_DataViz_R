@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><strong>4. Visualizing a Discrete (Categorical) Variable</strong><a href="visualizing-a-discrete-categorical-variable.html#visualizing-a-discrete-categorical-variable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
 <p><strong>What kind of visualization should we use for a discrete (categorical) variable?</strong></p>
-<p>Let’s say we want to explore blood types in our group. How many students have blood type A? How does the distribution compare to other blood types?</p>
+<p>Let’s say we want to explore blood types in our group. How many students have blood type A? How are they compared to those with other blood types?</p>
 <hr />
 <p>When working with categorical data, we often want to understand <strong>how frequently different categories</strong> occur. A simple table of counts can provide raw numbers, but visualizing the data makes it much easier to <strong>compare groups</strong>, <strong>spot trends</strong>, and <strong>identify dominant categories</strong>.</p>
 <p>For example, in our <code>MBTI</code> dataset, we have several categorical variables, such as:</p>
@@ -225,6 +225,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb45-2"><a href="visualizing-a-discrete-categorical-variable.html#cb45-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> blood_type, <span class="at">fill =</span> blood_type)) <span class="sc">+</span></span>
 <span id="cb45-3"><a href="visualizing-a-discrete-categorical-variable.html#cb45-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_4_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Why are we using <code>fill</code> instead of <code>color</code> here?</p>
+<details>
+<summary>
+Click to see the answer
+</summary>
+In <code>ggplot2</code>, <code>color</code> and <code>fill</code> control different aspects of aesthetics. The <code>color</code> aesthetic is used for <strong>points, lines, and the outlines of shapes</strong>, applying to <code>geoms</code> like <code>geom_point()</code>, <code>geom_line()</code>, and <code>geom_boxplot()</code> (affecting the box outline). In contrast, <code>fill</code> is used for shapes with an <strong>interior area</strong>, such as bars, violins, and density plots (<code>geom_bar()</code>, <code>geom_violin()</code>, <code>geom_density()</code>), where it determines the <strong>inside color</strong>.
+</details>
 <hr />
 <p><strong>Why use a bar chart?</strong></p>
 <ul>
@@ -245,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Why use a pie chart?</strong></p>
 <ul>
 <li>Helps visualize <strong>proportions</strong></li>
-<li>Useful when total size matters (e.g., “What percentage of students have blood type A?”).</li>
+<li>Useful when total size matters (e.g. “What percentage of students have blood type A?”).</li>
 </ul>
 <hr />
 <p><strong>Caution When Using Pie Charts</strong></p>
@@ -256,8 +263,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A bar chart allows for precise comparisons by looking at bar heights, whereas our eyes are better at comparing lengths (bars) than angles (pie slices).</p>
 <p><strong>When should you use a pie chart?</strong></p>
 <ul>
-<li>When there are few categories (e.g., blood type with only 4 groups: A, B, AB, O).</li>
-<li>When you want to highlight one dominant category (e.g., “Most students have blood type O”).</li>
+<li>When there are few categories (e.g. blood type with only 4 groups: A, B, AB, O).</li>
+<li>When you want to highlight one dominant category (e.g. “Most students have blood type O”).</li>
 <li>When percentages are labeled clearly so that proportions are obvious.</li>
 </ul>
 <p>If your data has many categories or small differences matter, <strong>a bar chart is usually the better choice</strong> for clarity and accuracy.</p>

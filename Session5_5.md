@@ -36,7 +36,7 @@ Conveniently, we did this before when we checked the Thinking Score (`T`) and th
 ``` r
 ggplot(MBTI) + 
   geom_jitter(aes(x = T, y = J, color = gender)) +
-  geom_smooth(method = "lm", aes(x = T, y = J), color = 'black') + #check the trendline color to black
+  geom_smooth(method = "lm", aes(x = T, y = J), color = 'black') + #change the trendline color to black
   theme_classic()
 ```
 
@@ -46,21 +46,15 @@ ggplot(MBTI) +
 
 <img src="Session5_5_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-To show the linear regression results (R² and p-value), we can use `stat_cor()` from the ggpubr package to display regression statistics.
+To show the linear regression results (R and p-value), we can use `stat_cor()` from the ggpubr package to display regression statistics.
 
 
 ``` r
 library(ggpubr)
-```
 
-```
-## Warning: package 'ggpubr' was built under R version 4.4.2
-```
-
-``` r
 ggplot(MBTI) + 
   geom_jitter(aes(x = T, y = J, color = gender)) +  # Reduce overplotting
-  geom_smooth(method = "lm", aes(x = T, y = J), color = "black") +  # Add trendline
+  geom_smooth(method = "lm", aes(x = T, y = J), color = "black") +  # Add a trendline
   stat_cor(aes(x = T, y = J)) +
   theme_classic()
 ```
@@ -71,7 +65,7 @@ ggplot(MBTI) +
 
 <img src="Session5_5_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
-How do interpret the results?
+How do we interpret the results?
 
 <details> <summary>**Click to see the answer.** </summary>
 
@@ -272,7 +266,7 @@ ggplot(MBTI) +
 
 ### **5.3.3 Bar Chart with Mean and Error Bars**
 
-Instead of plotting raw data, we can visualize summary statistics (e.g., mean ± standard deviation). Don't worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.
+Instead of plotting raw data, we can visualize summary statistics (e.g. mean ± standard deviation). Don't worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.
 
 
 ``` r

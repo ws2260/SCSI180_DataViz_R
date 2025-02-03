@@ -18,7 +18,7 @@ output:
 
 **What kind of visualization should we use for a discrete (categorical) variable?**
 
-Let’s say we want to explore blood types in our group. How many students have blood type A? How does the distribution compare to other blood types? 
+Let’s say we want to explore blood types in our group. How many students have blood type A? How are they compared to those with other blood types? 
 
 ---
 
@@ -63,6 +63,12 @@ ggplot(MBTI) +
 
 <img src="Session5_4_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
+Why are we using `fill` instead of `color` here?
+
+<details><summary> Click to see the answer </summary>
+In `ggplot2`, `color` and `fill` control different aspects of aesthetics. The `color` aesthetic is used for **points, lines, and the outlines of shapes**, applying to `geoms` like `geom_point()`, `geom_line()`, and `geom_boxplot()` (affecting the box outline). In contrast, `fill` is used for shapes with an **interior area**, such as bars, violins, and density plots (`geom_bar()`, `geom_violin()`, `geom_density()`), where it determines the **inside color**. 
+</details>
+
 ---
 
 **Why use a bar chart?**
@@ -91,7 +97,7 @@ ggplot(MBTI) +
 **Why use a pie chart?**
 
 - Helps visualize **proportions** 
-- Useful when total size matters (e.g., "What percentage of students have blood type A?").
+- Useful when total size matters (e.g. "What percentage of students have blood type A?").
 
 ---
 
@@ -109,8 +115,8 @@ A bar chart allows for precise comparisons by looking at bar heights, whereas ou
 
 **When should you use a pie chart?**
 
-- When there are few categories (e.g., blood type with only 4 groups: A, B, AB, O).
-- When you want to highlight one dominant category (e.g., "Most students have blood type O").
+- When there are few categories (e.g. blood type with only 4 groups: A, B, AB, O).
+- When you want to highlight one dominant category (e.g. "Most students have blood type O").
 - When percentages are labeled clearly so that proportions are obvious.
 
 If your data has many categories or small differences matter, **a bar chart is usually the better choice** for clarity and accuracy.
