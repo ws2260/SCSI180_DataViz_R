@@ -39,7 +39,9 @@ To explore categorical data effectively, we can use different types of visualiza
 
 ## **4.1 Bar Chart: Most Common Category/Categories**
 
-A bar chart is the most straightforward way to visualize the frequency of each category.
+---
+
+A **bar chart** is the **most straightforward way** to visualize the **frequency of each category**.
 
 
 
@@ -80,7 +82,9 @@ In `ggplot2`, `color` and `fill` control different aspects of aesthetics. The `c
 
 ## **4.2 Pie Chart: Proportion of Blood Types**
 
-If we want to see categories as proportions of the total group, a pie chart works ok if the data is not too complex.
+---
+
+If we want to see categories as **proportions of the total group**, a pie chart works ok if the data is not too complex.
 
 
 ``` r

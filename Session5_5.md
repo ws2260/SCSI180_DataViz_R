@@ -20,6 +20,8 @@ Once we look at the pattern within each variable (aka. summarization), we can th
 
 ## **5.1 Relationship Between Two Continuous Variables**
 
+---
+
 When both variables are continuous, we want to explore **how they change together**. Does **one variable increase when the other increases** (**positive correlation**)? Does **one decrease as the other increases** (**negative correlation**)? Or is there no clear pattern?
 
 ---
@@ -85,8 +87,6 @@ You will learn more in detail about hypothesis testing and p values later.
 
 </details>
 
-
-
 To check the regression on the relationships in male vs female separately:
 
 
@@ -107,6 +107,8 @@ ggplot(MBTI) +
 ---
 
 ## **5.2 Relationship Between Two Categorical Variables**
+
+---
 
 When both variables are discrete/categorical, we are often interested in how their distributions compare. Instead of looking at individual counts separately, we want to see how one categorical variable is distributed within another.
 
@@ -183,6 +185,8 @@ ggplot(data = MBTI) +
 ---
 
 ## **5.3 Relationship between a Continuous and a Categorical Variable**
+
+---
 
 When we analyze the relationship between one continuous variable and one categorical variable, we often want to compare **how the continuous variable varies across different categories**. Instead of treating all values as one distribution, we break them down by category to see differences more clearly.
 

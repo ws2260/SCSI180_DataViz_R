@@ -46,6 +46,8 @@ Each method provides unique insights into how sleep patterns vary across student
 
 ## **3.1 Histogram: Showing Frequency of Sleep Durations**
 
+---
+
 A **histogram** groups sleep hours into **bins**, turning the continuous variable into the discrete one, making it easy to see how frequently different sleep durations occur. This helps us identify the most common sleep patterns and whether the data is normally distributed or skewed.
 
 
@@ -72,6 +74,8 @@ ggplot(MBTI) +
 
 ## **3.2 Density Plot: A Smooth Curve for Distribution**
 
+---
+
 A **density plot** is similar to a histogram but uses a smooth curve instead of bars. It provides a clearer view of the **overall shape** of the data without being affected by bin sizes.
 
 
@@ -94,6 +98,8 @@ ggplot(MBTI) +
 ---
 
 ## **3.3 Box Plot: Identifying Outliers and Variability**
+
+---
 
 A **box plot** summarizes the distribution using quartiles, showing the **median**, **spread**, and **potential outliers**. This is useful for identifying students who sleep significantly less or more than the rest.
 
@@ -129,6 +135,8 @@ In a box plot, the whiskers represent the minimum and maximum values within **1.
 ---
 
 ## **3.4 Violin Plot: Combining Box Plot and Density Plot**
+
+---
 
 A violin plot merges the benefits of a box plot and a density plot, showing both summary statistics and the full distribution of sleep durations. Note that if you're only looking at one variable, it may be a better idea to do a separate approach (a histogram/density plot + a box plot rather than a single violin one).
 

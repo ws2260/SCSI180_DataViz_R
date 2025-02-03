@@ -219,6 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="histogram-showing-frequency-of-sleep-durations" class="section level2 hasAnchor">
 <h2><strong>3.1 Histogram: Showing Frequency of Sleep Durations</strong><a href="visualizing-a-continuous-variable.html#histogram-showing-frequency-of-sleep-durations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>A <strong>histogram</strong> groups sleep hours into <strong>bins</strong>, turning the continuous variable into the discrete one, making it easy to see how frequently different sleep durations occur. This helps us identify the most common sleep patterns and whether the data is normally distributed or skewed.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="visualizing-a-continuous-variable.html#cb39-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb39-2"><a href="visualizing-a-continuous-variable.html#cb39-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">boundary =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="co"># bin size is 1 hour and bin edges align with whole numbers</span></span>
@@ -235,6 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="density-plot-a-smooth-curve-for-distribution" class="section level2 hasAnchor">
 <h2><strong>3.2 Density Plot: A Smooth Curve for Distribution</strong><a href="visualizing-a-continuous-variable.html#density-plot-a-smooth-curve-for-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>A <strong>density plot</strong> is similar to a histogram but uses a smooth curve instead of bars. It provides a clearer view of the <strong>overall shape</strong> of the data without being affected by bin sizes.</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="visualizing-a-continuous-variable.html#cb40-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb40-2"><a href="visualizing-a-continuous-variable.html#cb40-2" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
@@ -251,6 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="box-plot-identifying-outliers-and-variability" class="section level2 hasAnchor">
 <h2><strong>3.3 Box Plot: Identifying Outliers and Variability</strong><a href="visualizing-a-continuous-variable.html#box-plot-identifying-outliers-and-variability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>A <strong>box plot</strong> summarizes the distribution using quartiles, showing the <strong>median</strong>, <strong>spread</strong>, and <strong>potential outliers</strong>. This is useful for identifying students who sleep significantly less or more than the rest.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="visualizing-a-continuous-variable.html#cb41-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb41-2"><a href="visualizing-a-continuous-variable.html#cb41-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleeping_hours)) <span class="sc">+</span> </span>
@@ -276,6 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="violin-plot-combining-box-plot-and-density-plot" class="section level2 hasAnchor">
 <h2><strong>3.4 Violin Plot: Combining Box Plot and Density Plot</strong><a href="visualizing-a-continuous-variable.html#violin-plot-combining-box-plot-and-density-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>A violin plot merges the benefits of a box plot and a density plot, showing both summary statistics and the full distribution of sleep durations. Note that if you’re only looking at one variable, it may be a better idea to do a separate approach (a histogram/density plot + a box plot rather than a single violin one).</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="visualizing-a-continuous-variable.html#cb42-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
 <span id="cb42-2"><a href="visualizing-a-continuous-variable.html#cb42-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&#39;&#39;</span>, <span class="at">y =</span> sleeping_hours)) <span class="sc">+</span> </span>

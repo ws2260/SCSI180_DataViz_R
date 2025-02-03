@@ -188,6 +188,8 @@ This is expected. We just instruct the `ggplot()` function to know which datafra
 
 ## **2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?**
 
+---
+
 Now we've provided ggplot() with the dataframe `MBTI`. Next, we need to think about which variables (aka. columns) we would use to generate the plot.
 
 The three variables to be used are:
@@ -249,6 +251,8 @@ The output is no longer a blank canvas as it shows a blank plot with axes labele
 ---
 
 ## **2.3 Geometrics: Which Type/Shape of Plots to be Used?**
+
+---
 
 Now, we need to decide what type of plot would be appropriate for our variables.
 
@@ -375,6 +379,8 @@ In fact, some prefer never dropping them at all to ensure the code is more reada
 
 ## **2.4 Facets: Split the Plot into Subplots**
 
+---
+
 Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can **split the visualization into multiple smaller panels**, each showing a subset of the data. This technique is called **faceting**, and it helps reveal patterns that might be hidden in an overcrowded plot.
 
 For example, in our `MBTI` dataset, we may want to examine the relationship between Thinking Score and Judging Score across different genders. By faceting the plot by `gender`, we can see how this relationship varies within each group, rather than having all the data points mixed together in a single plot.
@@ -458,6 +464,8 @@ In `facet_wrap()`, the `nrow` argument controls the number of rows in the facete
 
 ## **2.5 Statistics: Adding Summarized Information to Plots**
 
+---
+
 So far, we have been plotting raw data points, but sometimes we need to add summarized information to help interpret trends and patterns. In `ggplot2`, statistical transformations allow us to compute and visualize summaries like **trend lines**, **averages**, **counts**, or **density distributions** directly on the plot.
 
 For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as `geom_smooth()`, come into play.
@@ -490,6 +498,8 @@ By incorporating these statistical elements, we can enhance our visualizations t
 ---
 
 ## **2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio**
+
+---
 
 The **coordinate system** determines how data is mapped onto the plotting area, influencing the **scaling, aspect ratio, and orientation** of the visualization. By default, `ggplot2` uses the Cartesian coordinate system (`coord_cartesian()`), but other options allow for transformations that can change how data is represented.
 
@@ -563,6 +573,8 @@ This is a crude method. You will learn about data manipulation later so the visu
 ---
 
 ## **2.7 Theme: Controlling the Appearance of a Plot**
+
+---
 
 While we have focused on data representation, **the overall look and feel of a plot** also play a crucial role in making visualizations clear, professional, and publication-ready. `ggplot2` provides themes that allow us to control elements like **backgrounds**, **grid lines**, **font sizes**, **axis styles**, and **legends**.
 

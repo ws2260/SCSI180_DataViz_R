@@ -309,6 +309,7 @@ You can test your answer with the MBTI dataframe. Start by importing the data.</
 </div>
 <div id="aesthetics-which-and-how-variables-to-be-mapped-to-the-plot" class="section level2 hasAnchor">
 <h2><strong>2.2 Aesthetics: Which and How Variables to be Mapped to the Plot?</strong><a href="constructing-a-plot.html#aesthetics-which-and-how-variables-to-be-mapped-to-the-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>Now we’ve provided ggplot() with the dataframe <code>MBTI</code>. Next, we need to think about which variables (aka. columns) we would use to generate the plot.</p>
 <p>The three variables to be used are:</p>
 <ol style="list-style-type: decimal">
@@ -346,6 +347,7 @@ Click to see the output
 </div>
 <div id="geometrics-which-typeshape-of-plots-to-be-used" class="section level2 hasAnchor">
 <h2><strong>2.3 Geometrics: Which Type/Shape of Plots to be Used?</strong><a href="constructing-a-plot.html#geometrics-which-typeshape-of-plots-to-be-used" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>Now, we need to decide what type of plot would be appropriate for our variables.</p>
 <p>Since the variables mapped to the x-axis and y-axis are both continuous, <strong>a scatter plot</strong> would be the most suitable choice. Scatter plots effectively show the relationship between two continuous variables by representing each observation as a point on the plot.</p>
 <p>In the Grammar of Graphics, these visual representations are referred to as <strong>geometric objects</strong> or <strong>geoms</strong>. Geometric objects determine the shape or type of visualization used to display the data, such as points, lines, or bars. For our example, the geometric object we use is a scatter plot, represented by dots.</p>
@@ -427,6 +429,7 @@ Click to see the output
 </div>
 <div id="facets-split-the-plot-into-subplots" class="section level2 hasAnchor">
 <h2><strong>2.4 Facets: Split the Plot into Subplots</strong><a href="constructing-a-plot.html#facets-split-the-plot-into-subplots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>Sometimes, we want to compare patterns across different categories within our data. Instead of plotting everything on a single graph, we can <strong>split the visualization into multiple smaller panels</strong>, each showing a subset of the data. This technique is called <strong>faceting</strong>, and it helps reveal patterns that might be hidden in an overcrowded plot.</p>
 <p>For example, in our <code>MBTI</code> dataset, we may want to examine the relationship between Thinking Score and Judging Score across different genders. By faceting the plot by <code>gender</code>, we can see how this relationship varies within each group, rather than having all the data points mixed together in a single plot.</p>
 <p>Faceting is particularly useful when dealing with categorical variables, as it allows us to visualize trends separately while maintaining the same axis scales for easy comparison.</p>
@@ -485,6 +488,7 @@ Click to see the answer
 </div>
 <div id="statistics-adding-summarized-information-to-plots" class="section level2 hasAnchor">
 <h2><strong>2.5 Statistics: Adding Summarized Information to Plots</strong><a href="constructing-a-plot.html#statistics-adding-summarized-information-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>So far, we have been plotting raw data points, but sometimes we need to add summarized information to help interpret trends and patterns. In <code>ggplot2</code>, statistical transformations allow us to compute and visualize summaries like <strong>trend lines</strong>, <strong>averages</strong>, <strong>counts</strong>, or <strong>density distributions</strong> directly on the plot.</p>
 <p>For example, in our scatter plot of Thinking Score vs. Judging Score, we might want to add a trend line to see the overall relationship between the two variables. This is where statistical layers, such as <code>geom_smooth()</code>, come into play.</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="constructing-a-plot.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
@@ -505,6 +509,7 @@ Click to see the answer
 </div>
 <div id="coordinates-controlling-the-plots-scale-and-aspect-ratio" class="section level2 hasAnchor">
 <h2><strong>2.6 Coordinates: Controlling the Plot’s Scale and Aspect Ratio</strong><a href="constructing-a-plot.html#coordinates-controlling-the-plots-scale-and-aspect-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>The <strong>coordinate system</strong> determines how data is mapped onto the plotting area, influencing the <strong>scaling, aspect ratio, and orientation</strong> of the visualization. By default, <code>ggplot2</code> uses the Cartesian coordinate system (<code>coord_cartesian()</code>), but other options allow for transformations that can change how data is represented.</p>
 <p>For example, zooming in on a specific range of values without removing data points can be done using <code>coord_cartesian(xlim = ..., ylim = ...)</code>. Some plots may also benefit from alternative coordinate systems, such as:</p>
 <ul>
@@ -543,6 +548,7 @@ Click to see the answer
 </div>
 <div id="theme-controlling-the-appearance-of-a-plot" class="section level2 hasAnchor">
 <h2><strong>2.7 Theme: Controlling the Appearance of a Plot</strong><a href="constructing-a-plot.html#theme-controlling-the-appearance-of-a-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr />
 <p>While we have focused on data representation, <strong>the overall look and feel of a plot</strong> also play a crucial role in making visualizations clear, professional, and publication-ready. <code>ggplot2</code> provides themes that allow us to control elements like <strong>backgrounds</strong>, <strong>grid lines</strong>, <strong>font sizes</strong>, <strong>axis styles</strong>, and <strong>legends</strong>.</p>
 <p>By default, <code>ggplot2</code> applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:</p>
 <ul>
