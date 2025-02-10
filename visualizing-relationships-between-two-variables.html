@@ -267,8 +267,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="stacked-bar-chart" class="section level3 hasAnchor">
 <h3><strong>5.2.1 Stacked Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#stacked-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="visualizing-relationships-between-two-variables.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb53-2"><a href="visualizing-relationships-between-two-variables.html#cb53-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="visualizing-relationships-between-two-variables.html#cb53-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="visualizing-relationships-between-two-variables.html#cb53-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
 <span id="cb53-3"><a href="visualizing-relationships-between-two-variables.html#cb53-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p><strong>Why use a stacked bar chart?</strong></p>
@@ -281,8 +281,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="grouped-bar-chart" class="section level3 hasAnchor">
 <h3><strong>5.2.2 Grouped Bar Chart</strong><a href="visualizing-relationships-between-two-variables.html#grouped-bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You just add <code>position = "dodge"</code> to the <code>geom_bar()</code> function.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="visualizing-relationships-between-two-variables.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
-<span id="cb54-2"><a href="visualizing-relationships-between-two-variables.html#cb54-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="visualizing-relationships-between-two-variables.html#cb54-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI) <span class="sc">+</span> </span>
+<span id="cb54-2"><a href="visualizing-relationships-between-two-variables.html#cb54-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> gender, <span class="at">fill =</span> EI), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb54-3"><a href="visualizing-relationships-between-two-variables.html#cb54-3" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="Session5_5_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p><strong>Why use a grouped bar chart?</strong></p>
@@ -368,7 +368,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="bar-chart-with-mean-and-error-bars" class="section level3 hasAnchor">
 <h3><strong>5.3.3 Bar Chart with Mean and Error Bars</strong><a href="visualizing-relationships-between-two-variables.html#bar-chart-with-mean-and-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Instead of plotting raw data, we can visualize summary statistics (e.g. mean ± standard deviation). Don’t worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.</p>
+<p>Instead of plotting raw data, we can visualize summary statistics (e.g. mean ± standard deviation). Don’t worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions where you manipulate the data first to get a new summarized dataframe to generate a plot.</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="visualizing-relationships-between-two-variables.html#cb60-1" tabindex="-1"></a><span class="fu">ggplot</span>(MBTI, <span class="fu">aes</span>(<span class="at">x =</span> EI, <span class="at">y =</span> daily_screen_time, <span class="at">fill =</span> EI)) <span class="sc">+</span> </span>
 <span id="cb60-2"><a href="visualizing-relationships-between-two-variables.html#cb60-2" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&quot;bar&quot;</span>) <span class="sc">+</span> </span>
 <span id="cb60-3"><a href="visualizing-relationships-between-two-variables.html#cb60-3" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun.data =</span> mean_cl_boot, <span class="at">geom =</span> <span class="st">&quot;errorbar&quot;</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>

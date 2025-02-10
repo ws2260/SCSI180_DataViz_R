@@ -128,8 +128,8 @@ To explore the relationship effectively, we can use different types of visualiza
 
 
 ``` r
-ggplot(MBTI, aes(x = gender, fill = EI)) + 
-  geom_bar() + 
+ggplot(MBTI) + 
+  geom_bar(aes(x = gender, fill = EI)) + 
   theme_classic()
 ```
 
@@ -148,8 +148,8 @@ You just add `position = "dodge"` to the `geom_bar()` function.
 
 
 ``` r
-ggplot(MBTI, aes(x = gender, fill = EI)) + 
-  geom_bar(position = "dodge") + 
+ggplot(MBTI) + 
+  geom_bar(aes(x = gender, fill = EI), position = "dodge") + 
   theme_classic()
 ```
 
@@ -270,7 +270,7 @@ ggplot(MBTI) +
 
 ### **5.3.3 Bar Chart with Mean and Error Bars**
 
-Instead of plotting raw data, we can visualize summary statistics (e.g. mean ± standard deviation). Don't worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions.
+Instead of plotting raw data, we can visualize summary statistics (e.g. mean ± standard deviation). Don't worry about this now. Just note that this is one of the common ways we visualize this type of relationship. You will learn about this in more detail in one of the later sessions where you manipulate the data first to get a new summarized dataframe to generate a plot.
 
 
 ``` r

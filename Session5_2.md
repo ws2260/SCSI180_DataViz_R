@@ -578,7 +578,7 @@ This is a crude method. You will learn about data manipulation later so the visu
 
 While we have focused on data representation, **the overall look and feel of a plot** also play a crucial role in making visualizations clear, professional, and publication-ready. `ggplot2` provides themes that allow us to control elements like **backgrounds**, **grid lines**, **font sizes**, **axis styles**, and **legends**.
 
-By default, `ggplot2` applies the theme_grey() theme, but we can customize the appearance using built-in themes such as:
+By default, `ggplot2` applies the `theme_grey()` theme, but we can customize the appearance using built-in themes such as:
 
 - `theme_bw()` – A clean black-and-white theme with a white background.
 - `theme_minimal()` – A simple, modern look with fewer grid lines.
